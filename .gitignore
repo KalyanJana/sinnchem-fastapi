@@ -1,0 +1,31 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# Python local environments, caches, and test output
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Frontend dependencies, generated builds, and TypeScript caches
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/frontend/
+dist/
+*.tsbuildinfo
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/

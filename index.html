@@ -1,0 +1,4243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f4ee" />
+    <title>Sinnchem Life Sciences | Mobile-first website concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #142c27;
+        --muted: #65746e;
+        --green: #155c45;
+        --green-dark: #103d31;
+        --lime: #d9ed70;
+        --paper: #f3f4ee;
+        --white: #fff;
+        --line: #e1e6df;
+        --orange: #ed744c;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: "DM Sans", sans-serif;
+        --display: "Manrope", sans-serif;
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--ink);
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--paper);
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+      button {
+        color: inherit;
+      }
+      a {
+        color: inherit;
+      }
+      [hidden] {
+        display: none !important;
+      }
+
+      .presentation {
+        min-height: 100vh;
+        padding: 26px 32px 34px;
+      }
+      .presentation-head {
+        max-width: 1120px;
+        margin: 0 auto 22px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .eyebrow {
+        margin: 0 0 7px;
+        color: var(--green);
+        font: 700 10px var(--display);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .presentation h1 {
+        margin: 0;
+        font: 700 22px var(--display);
+        letter-spacing: 0;
+      }
+      .presentation-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .workspace {
+        max-width: 1120px;
+        min-height: 780px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: minmax(340px, 420px) 1fr;
+        align-items: start;
+        justify-content: center;
+        gap: clamp(48px, 10vw, 130px);
+      }
+      .device {
+        width: 100%;
+        height: min(820px, calc(100vh - 130px));
+        min-height: 690px;
+        margin: auto;
+        border: 8px solid #1b2823;
+        border-radius: 34px;
+        background: var(--white);
+        overflow: hidden;
+        position: relative;
+        box-shadow:
+          0 22px 65px #172e2521,
+          0 4px 12px #172e2515;
+      }
+      .device-top {
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        position: absolute;
+        inset: 0 0 auto;
+        z-index: 5;
+        pointer-events: none;
+      }
+      .device-notch {
+        width: 82px;
+        height: 15px;
+        background: #1b2823;
+        border-radius: 0 0 10px 10px;
+      }
+      .app {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 24px;
+      }
+      .app-header {
+        flex: 0 0 62px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border-bottom: 1px solid #edf0ec;
+        background: #fff;
+        position: relative;
+        z-index: 3;
+      }
+      .brand {
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        text-decoration: none;
+      }
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        display: inline-block;
+      }
+      .brand-mark::before,
+      .brand-mark::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+      }
+      .brand-mark::before {
+        width: 20px;
+        height: 20px;
+        left: 0;
+        top: 1px;
+        background: var(--green);
+      }
+      .brand-mark::after {
+        width: 16px;
+        height: 16px;
+        right: 0;
+        bottom: 1px;
+        background: var(--lime);
+        border: 3px solid white;
+      }
+      .brand-name {
+        display: block;
+        font: 800 13px var(--display);
+        line-height: 1.05;
+        letter-spacing: 0.25px;
+      }
+      .brand-sub {
+        display: block;
+        color: #718079;
+        font: 600 7px var(--display);
+        letter-spacing: 1.35px;
+        margin-top: 4px;
+      }
+      .menu-button {
+        border: 0;
+        padding: 8px 0 8px 12px;
+        background: none;
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .header-phone {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto;
+        color: var(--green);
+        font: 700 10px var(--display);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .header-phone-mark {
+        font-size: 13px;
+      }
+      .desktop-nav {
+        display: none;
+      }
+      .screen-wrap {
+        min-height: 0;
+        flex: 1;
+        overflow: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+        background: white;
+      }
+      .screen-wrap::-webkit-scrollbar {
+        display: none;
+      }
+      .screen {
+        min-height: 100%;
+        padding-bottom: 28px;
+        animation: enter 0.24s ease-out;
+      }
+      @keyframes enter {
+        from {
+          opacity: 0.65;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .bottom-nav {
+        flex: 0 0 62px;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        background: #fff;
+        z-index: 3;
+      }
+      .bottom-nav button {
+        border: 0;
+        background: white;
+        color: #728079;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        cursor: pointer;
+      }
+      .bottom-nav button[aria-current="page"] {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .nav-icon {
+        width: 17px;
+        height: 17px;
+        border: 1.5px solid currentColor;
+        border-radius: 5px 5px 7px 7px;
+        display: grid;
+        place-items: center;
+        font-size: 10px;
+        line-height: 1;
+      }
+      .bottom-nav button:nth-child(2) .nav-icon {
+        border-radius: 50%;
+      }
+      .bottom-nav button:nth-child(3) .nav-icon {
+        border-radius: 50% 50% 4px 4px;
+      }
+      .bottom-nav button:nth-child(4) .nav-icon {
+        border-radius: 50%;
+      }
+
+      .hero {
+        min-height: 355px;
+        padding: 27px 20px 20px;
+        background: var(--green-dark);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        right: -116px;
+        top: 38px;
+        border: 1px solid #ffffff25;
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 27px #ffffff08,
+          0 0 0 55px #ffffff07;
+      }
+      .hero::after {
+        content: none;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-visual {
+        position: absolute;
+        z-index: 0;
+        width: 230px;
+        height: 230px;
+        right: -60px;
+        top: 90px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 1px solid #ffffff42;
+        box-shadow:
+          0 0 0 16px #ffffff0b,
+          0 0 0 34px #ffffff08;
+      }
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.7s ease;
+      }
+      .hero-slide.is-active {
+        opacity: 1;
+      }
+      .hero-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.74;
+      }
+      .hero-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #103d3130, #103d3180);
+      }
+      .hero-slide-label {
+        position: absolute;
+        z-index: 1;
+        left: 16px;
+        right: 16px;
+        bottom: 30px;
+        color: white;
+        font: 600 9px/1.3 var(--display);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .hero-controls {
+        position: absolute;
+        z-index: 3;
+        right: 17px;
+        bottom: 17px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .hero-dot {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: 1px solid #ffffffc4;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+      }
+      .hero-dot[aria-current="true"] {
+        background: var(--lime);
+        border-color: var(--lime);
+      }
+      .hero-kicker {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--lime);
+        font: 700 9px var(--display);
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+      .hero-kicker::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--lime);
+      }
+      .hero h2 {
+        position: relative;
+        z-index: 1;
+        max-width: 284px;
+        margin: 17px 0 11px;
+        font: 500 39px/1.03 var(--serif);
+        letter-spacing: 0;
+      }
+      .hero h2 em {
+        color: var(--lime);
+        font-weight: 400;
+      }
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        max-width: 226px;
+        margin: 0;
+        color: #dce8e1;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+      .hero-actions {
+        position: relative;
+        z-index: 1;
+        margin-top: 21px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .button-primary {
+        min-height: 40px;
+        padding: 0 15px;
+        border: 0;
+        border-radius: 3px;
+        background: var(--lime);
+        color: var(--green-dark);
+        font-size: 10px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .text-link {
+        border: 0;
+        padding: 6px 0;
+        background: transparent;
+        color: inherit;
+        font-size: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .hero-index {
+        position: absolute;
+        z-index: 1;
+        right: 20px;
+        bottom: 22px;
+        color: #d9e6df;
+        font: 700 9px var(--display);
+        letter-spacing: 1px;
+      }
+      .intro-row {
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .intro-row p {
+        margin: 0;
+        max-width: 190px;
+        font: 600 13px/1.45 var(--display);
+      }
+      .location {
+        display: inline-flex;
+        gap: 5px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 9px;
+        white-space: nowrap;
+      }
+      .section {
+        padding: 22px 20px;
+      }
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .section-heading h3 {
+        margin: 0;
+        font: 700 17px var(--display);
+        letter-spacing: 0;
+      }
+      .section-heading p {
+        margin: 0 0 3px;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .arrow-link {
+        border: 0;
+        background: none;
+        color: var(--green);
+        font-size: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .category-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .category-card {
+        min-height: 100px;
+        padding: 13px 12px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #f2f5ef;
+        border: 1px solid #e8ede5;
+        text-align: left;
+        cursor: pointer;
+      }
+      .category-card:nth-child(2) {
+        background: #edf3ef;
+      }
+      .category-card:nth-child(3) {
+        background: #f4f3e9;
+      }
+      .category-card:nth-child(4) {
+        background: #f7eee7;
+      }
+      .category-count {
+        color: var(--green);
+        font: 700 9px var(--display);
+      }
+      .category-title {
+        max-width: 125px;
+        font: 700 12px/1.2 var(--display);
+      }
+      .category-arrow {
+        position: absolute;
+        right: 11px;
+        bottom: 11px;
+        color: var(--green);
+        font-size: 15px;
+      }
+      .company-snapshot {
+        padding: 22px 20px;
+        background: var(--green-dark);
+        color: white;
+      }
+      .company-snapshot-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      .company-snapshot .eyebrow {
+        color: var(--lime);
+      }
+      .company-snapshot h3 {
+        max-width: 480px;
+        margin: 0 0 13px;
+        font: 500 22px/1.15 var(--serif);
+      }
+      .company-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 14px;
+      }
+      .company-fact {
+        padding: 10px 0;
+        border-top: 1px solid #ffffff2b;
+      }
+      .company-fact strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--lime);
+        font: 700 11px var(--display);
+      }
+      .company-fact span {
+        display: block;
+        color: #d5e2db;
+        font-size: 9px;
+        line-height: 1.45;
+      }
+      .home-careers {
+        margin-top: 18px;
+        padding: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        border: 1px solid #ffffff45;
+      }
+      .home-careers p {
+        margin: 0;
+        color: #d5e2db;
+        font-size: 9px;
+        line-height: 1.5;
+      }
+      .home-careers strong {
+        display: block;
+        margin-bottom: 3px;
+        color: white;
+        font: 700 11px var(--display);
+      }
+      .home-careers .text-link {
+        flex: 0 0 auto;
+        color: var(--lime);
+      }
+      .proof-strip {
+        padding: 19px 20px;
+        background: var(--lime);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .proof-number {
+        font: 800 25px var(--display);
+      }
+      .proof-label {
+        max-width: 142px;
+        font-size: 9px;
+        line-height: 1.4;
+      }
+      .journey-section {
+        padding: 24px 20px;
+        background: #f4f6f1;
+      }
+      .journey-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      .journey-section .section-heading {
+        margin-bottom: 13px;
+      }
+      .journey-steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid #dce4d9;
+      }
+      .journey-step {
+        min-width: 0;
+        padding: 12px 8px 0 0;
+      }
+      .journey-step + .journey-step {
+        padding-left: 9px;
+        border-left: 1px solid #dce4d9;
+      }
+      .journey-step span {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--green);
+        font: 700 9px var(--display);
+      }
+      .journey-step h4 {
+        margin: 0;
+        font: 700 10px/1.35 var(--display);
+        overflow-wrap: anywhere;
+      }
+      .home-enquiry-button {
+        width: 100%;
+      }
+      .feature-image {
+        min-height: 135px;
+        background:
+          linear-gradient(90deg, #123d30e8, #123d3040),
+          url("https://images.unsplash.com/photo-1581093458791-9d15482442f1?auto=format&fit=crop&w=900&q=85")
+            center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding: 17px 19px;
+        color: white;
+      }
+      .feature-image p {
+        margin: 0 0 5px;
+        color: var(--lime);
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .feature-image h3 {
+        max-width: 230px;
+        margin: 0;
+        font: 500 21px/1.15 var(--serif);
+      }
+      .screen-title {
+        padding: 24px 20px 18px;
+        background: #eff3eb;
+      }
+      .screen-title .eyebrow {
+        margin-bottom: 9px;
+      }
+      .screen-title h2 {
+        margin: 0;
+        font: 500 31px/1.08 var(--serif);
+        letter-spacing: 0;
+      }
+      .screen-title p {
+        max-width: 310px;
+        margin: 9px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.55;
+      }
+      .search-box {
+        margin: 17px 20px 12px;
+        min-height: 42px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: #76827c;
+        background: white;
+      }
+      .search-box input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        color: var(--ink);
+        font-size: 11px;
+      }
+      .filters {
+        padding: 0 20px 14px;
+        display: flex;
+        gap: 7px;
+        overflow: auto;
+        scrollbar-width: none;
+      }
+      .filter-chip {
+        flex: 0 0 auto;
+        padding: 7px 10px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: white;
+        color: #5e6c64;
+        font-size: 9px;
+        cursor: pointer;
+      }
+      .filter-chip[aria-pressed="true"] {
+        border-color: var(--green);
+        background: var(--green);
+        color: white;
+      }
+      .results-count {
+        margin: 0 20px 9px;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .product-list {
+        padding: 0 20px;
+        display: grid;
+        gap: 8px;
+      }
+      .product-card {
+        min-height: 84px;
+        min-width: 0;
+        padding: 12px;
+        border: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 38px 1fr 18px;
+        gap: 10px;
+        align-items: center;
+        background: white;
+        text-align: left;
+        cursor: pointer;
+      }
+      .product-visual {
+        width: 38px;
+        height: 38px;
+        min-width: 0;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: #e8f0e7;
+        color: var(--green);
+        font: 600 17px var(--serif);
+      }
+      .product-visual img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .product-name {
+        display: block;
+        overflow-wrap: anywhere;
+      }
+      .product-card:nth-child(3n + 2) .product-visual {
+        background: #f2f0e4;
+        color: #6c6d3a;
+      }
+      .product-card:nth-child(3n) .product-visual {
+        background: #f7eae2;
+        color: #99533b;
+      }
+      .product-card h3 {
+        margin: 0 0 5px;
+        font: 700 11px/1.35 var(--display);
+      }
+      .product-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .product-card .chevron {
+        color: var(--green);
+        font-size: 16px;
+      }
+      .empty-state {
+        padding: 24px 10px;
+        color: var(--muted);
+        font-size: 11px;
+        text-align: center;
+      }
+      .detail-top {
+        min-height: 185px;
+        padding: 25px 20px;
+        background: var(--green-dark);
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+      .detail-top::after {
+        content: "S";
+        position: absolute;
+        right: 8px;
+        bottom: -76px;
+        color: #ffffff0d;
+        font: 500 255px var(--serif);
+      }
+      .back-link {
+        position: relative;
+        z-index: 1;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: #d2e1d8;
+        font-size: 10px;
+        cursor: pointer;
+      }
+      .detail-top .eyebrow {
+        position: relative;
+        z-index: 1;
+        margin-top: 30px;
+        color: var(--lime);
+      }
+      .detail-top h2 {
+        position: relative;
+        z-index: 1;
+        max-width: 310px;
+        margin: 0;
+        font: 500 25px/1.16 var(--serif);
+      }
+      .detail-breadcrumb {
+        padding: 13px 20px 0;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .detail-breadcrumb button {
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--green);
+        font-size: inherit;
+        cursor: pointer;
+      }
+      .detail-gallery {
+        padding: 16px 20px 0;
+      }
+      .gallery-main {
+        width: 100%;
+        height: 245px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #f4f6f1;
+      }
+      .gallery-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .gallery-thumbs {
+        display: flex;
+        gap: 8px;
+        padding-top: 9px;
+      }
+      .gallery-thumb {
+        width: 54px;
+        height: 48px;
+        padding: 3px;
+        border: 1px solid var(--line);
+        background: white;
+        cursor: pointer;
+      }
+      .gallery-thumb[aria-current="true"] {
+        border: 2px solid var(--green);
+      }
+      .gallery-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .detail-heading {
+        padding: 18px 20px 16px;
+      }
+      .detail-heading .eyebrow {
+        margin-bottom: 7px;
+      }
+      .detail-heading h2 {
+        margin: 0;
+        font: 500 25px/1.17 var(--serif);
+      }
+      .detail-heading p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.5;
+      }
+      .spec-section {
+        padding: 0 20px 19px;
+      }
+      .spec-section h3 {
+        margin: 0 0 10px;
+        font: 700 13px var(--display);
+      }
+      .spec-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+      }
+      .spec-table th,
+      .spec-table td {
+        padding: 10px 4px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        line-height: 1.45;
+      }
+      .spec-table th {
+        width: 44%;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .spec-table td {
+        font-weight: 600;
+        overflow-wrap: anywhere;
+      }
+      .spec-unlisted {
+        color: #7a8880;
+        font-weight: 400 !important;
+      }
+      .supply-note {
+        margin: 0 20px 18px;
+        padding: 13px;
+        background: #eff3eb;
+        color: var(--muted);
+        font-size: 9px;
+        line-height: 1.55;
+      }
+      .supply-note strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ink);
+        font: 700 10px var(--display);
+      }
+      .detail-enquiry {
+        margin: 0 20px 20px;
+        padding: 16px;
+        border: 1px solid var(--line);
+        background: white;
+      }
+      .detail-enquiry h3 {
+        margin: 0 0 6px;
+        font: 700 13px var(--display);
+      }
+      .detail-enquiry p {
+        margin: 0 0 13px;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.5;
+      }
+      .detail-enquiry .full-button + .full-button {
+        margin-top: 8px;
+      }
+      .detail-body {
+        padding: 20px;
+      }
+      .detail-note {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.6;
+      }
+      .detail-panel {
+        padding: 14px;
+        border: 1px solid var(--line);
+        background: #f7f8f5;
+      }
+      .detail-panel h3 {
+        margin: 0 0 7px;
+        font: 700 12px var(--display);
+      }
+      .detail-panel p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.55;
+      }
+      .detail-actions {
+        margin-top: 16px;
+        display: grid;
+        gap: 9px;
+      }
+      .full-button {
+        min-height: 43px;
+        width: 100%;
+        border: 1px solid var(--green);
+        background: var(--green);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .full-button.secondary {
+        background: white;
+        color: var(--green);
+      }
+      .about-photo {
+        margin: 0 0 12px;
+        min-height: 144px;
+        padding: 18px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        overflow: hidden;
+        position: relative;
+        background: var(--green-dark);
+        color: white;
+      }
+      .about-photo::before,
+      .about-photo::after {
+        content: "";
+        position: absolute;
+        border: 1px solid #ffffff24;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .about-photo::before {
+        width: 190px;
+        height: 190px;
+        right: -30px;
+        top: -70px;
+        box-shadow:
+          0 0 0 18px #ffffff09,
+          0 0 0 38px #ffffff08;
+      }
+      .about-photo::after {
+        width: 82px;
+        height: 82px;
+        right: 24px;
+        top: 16px;
+        background: var(--lime);
+        border: 0;
+        opacity: 0.9;
+      }
+      .location-kicker {
+        position: relative;
+        z-index: 1;
+        display: block;
+        margin-bottom: 7px;
+        color: var(--lime);
+        font: 700 8px var(--display);
+        letter-spacing: 1.2px;
+      }
+      .location-title {
+        position: relative;
+        z-index: 1;
+        display: block;
+        font: 500 27px/1 var(--serif);
+      }
+      .location-state {
+        position: relative;
+        z-index: 1;
+        display: block;
+        margin-top: 5px;
+        color: #d5e2db;
+        font-size: 9px;
+      }
+      .location-description {
+        position: relative;
+        z-index: 1;
+        display: block;
+        margin-top: 12px;
+        color: #d5e2db;
+        font-size: 9px;
+        line-height: 1.4;
+      }
+      .location-mark {
+        position: relative;
+        z-index: 1;
+        align-self: center;
+        margin-right: 10px;
+        color: var(--green-dark);
+        font-size: 28px;
+        line-height: 1;
+      }
+      .location-directions {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 38px;
+        margin: 0;
+        padding: 8px 0;
+        color: var(--green);
+        font: 700 10px var(--display);
+        text-decoration: none;
+      }
+      .about-snapshot {
+        margin: 0 20px;
+        padding: 14px 0;
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        gap: 12px;
+      }
+      .snapshot-item span {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 8px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .snapshot-item strong {
+        display: block;
+        font: 700 10px/1.4 var(--display);
+      }
+      .copy-block {
+        padding: 21px 20px;
+      }
+      .copy-block h3 {
+        margin: 0 0 9px;
+        font: 500 22px/1.15 var(--serif);
+      }
+      .copy-block p {
+        margin: 0 0 13px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.7;
+      }
+      .about-pillars {
+        padding: 0 20px 22px;
+        display: grid;
+        gap: 8px;
+      }
+      .about-pillar {
+        padding: 15px;
+        background: #f2f5ef;
+      }
+      .about-pillar:nth-child(2) {
+        background: #edf3ef;
+      }
+      .about-pillar .eyebrow {
+        margin-bottom: 7px;
+        font-size: 8px;
+      }
+      .about-pillar h3 {
+        margin: 0 0 6px;
+        font: 700 12px var(--display);
+      }
+      .about-pillar p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.55;
+      }
+      .leader-message {
+        margin: 0 20px 22px;
+        padding: 15px;
+        background: var(--green-dark);
+        color: white;
+      }
+      .leader-intro {
+        display: grid;
+        grid-template-columns: 84px minmax(0, 1fr);
+        align-items: center;
+        gap: 14px;
+      }
+      .leader-photo {
+        display: block;
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        object-position: center top;
+        background: #dfe6dc;
+      }
+      .leader-copy .eyebrow {
+        margin-bottom: 5px;
+        color: var(--lime);
+        font-size: 8px;
+      }
+      .leader-copy h3 {
+        margin: 0;
+        font: 700 12px/1.35 var(--display);
+      }
+      .leader-copy .leader-attribution {
+        margin: 4px 0 0;
+        color: #d4e0d8;
+        font: 500 9px/1.4 var(--sans);
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .leader-message blockquote {
+        margin: 14px 0 0;
+        padding-top: 13px;
+        border-top: 1px solid #ffffff2b;
+        font: 400 14px/1.65 var(--serif);
+      }
+      .location-address {
+        margin: 0;
+        padding: 14px;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: start;
+        gap: 10px;
+      }
+      .location-address span:first-child {
+        color: var(--green);
+        font-size: 16px;
+      }
+      .location-address p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.55;
+      }
+      .location-cluster {
+        margin: 0 20px 20px;
+      }
+      .about-commitments {
+        padding: 20px;
+        background: #f4f6f1;
+      }
+      .about-commitments h3 {
+        margin: 0 0 12px;
+        font: 700 15px var(--display);
+      }
+      .commitment-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 14px;
+      }
+      .commitment {
+        padding: 10px 0;
+        border-top: 1px solid #dce4d9;
+      }
+      .commitment strong {
+        display: block;
+        margin-bottom: 4px;
+        font: 700 10px var(--display);
+      }
+      .commitment p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 9px;
+        line-height: 1.5;
+      }
+      .safety-note {
+        margin-top: 13px;
+        padding: 12px;
+        border-left: 2px solid var(--green);
+        background: white;
+      }
+      .safety-note strong {
+        display: block;
+        margin-bottom: 4px;
+        font: 700 10px var(--display);
+      }
+      .safety-note p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 9px;
+        line-height: 1.5;
+      }
+      .facility-caption {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 8px;
+        line-height: 1.4;
+      }
+      .principle-list {
+        padding: 0 20px 20px;
+        display: grid;
+      }
+      .principle {
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 27px 1fr;
+        gap: 9px;
+      }
+      .principle-index {
+        color: var(--green);
+        font: 700 10px var(--display);
+      }
+      .principle h4 {
+        margin: 0 0 4px;
+        font: 700 11px var(--display);
+      }
+      .principle p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 9px;
+        line-height: 1.5;
+      }
+      .contact-card {
+        margin: 16px 0 0;
+        padding: 16px;
+        border: 1px solid var(--line);
+        background: white;
+      }
+      .contact-layout {
+        margin: 0 20px 20px;
+      }
+      .contact-card h3 {
+        margin: 0 0 14px;
+        font: 700 13px var(--display);
+      }
+      .contact-item {
+        padding: 10px 0;
+        border-top: 1px solid #edf0ec;
+      }
+      .contact-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--muted);
+        font-size: 8px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .contact-value {
+        font: 600 11px/1.5 var(--display);
+        text-decoration: none;
+        overflow-wrap: anywhere;
+      }
+      .contact-card .full-button {
+        margin-top: 14px;
+      }
+      .contact-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .contact-action {
+        min-height: 40px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        color: var(--green);
+        font: 700 10px var(--display);
+        text-decoration: none;
+      }
+      .map-panel {
+        width: 100%;
+        min-height: 220px;
+        margin-top: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        background: var(--green-dark);
+        color: white;
+        text-decoration: none;
+      }
+      .map-panel::before,
+      .map-panel::after {
+        content: "";
+        position: absolute;
+        border: 1px solid #ffffff25;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .map-panel::before {
+        width: 230px;
+        height: 230px;
+        top: -120px;
+        right: -45px;
+        box-shadow:
+          0 0 0 18px #ffffff08,
+          0 0 0 40px #ffffff07;
+      }
+      .map-panel::after {
+        width: 82px;
+        height: 82px;
+        top: 40px;
+        right: 28px;
+        background: var(--lime);
+        border: 0;
+        box-shadow: 0 0 0 11px #d9ed7018;
+      }
+      .map-panel-kicker,
+      .map-panel-place,
+      .map-panel-area,
+      .map-panel-action {
+        position: relative;
+        z-index: 1;
+      }
+      .map-panel-kicker {
+        color: var(--lime);
+        font: 700 9px var(--display);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+      .map-panel-place {
+        display: block;
+        margin-top: 26px;
+        font: 500 28px/1 var(--serif);
+      }
+      .map-panel-area {
+        display: block;
+        margin-top: 6px;
+        color: #d5e2db;
+        font-size: 10px;
+      }
+      .map-panel-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        align-self: flex-start;
+        margin-top: 16px;
+        padding: 10px 12px;
+        background: var(--lime);
+        color: var(--green-dark);
+        font: 700 10px var(--display);
+      }
+      .map-panel:hover .map-panel-action {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .map-caption {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .quote-form {
+        padding: 19px 20px;
+      }
+      .career-list {
+        padding: 10px 20px 20px;
+        display: grid;
+        gap: 10px;
+      }
+      .career-notice {
+        margin: 16px 20px 0;
+        padding: 11px 13px;
+        border-left: 2px solid var(--orange);
+        background: #fbf4ef;
+        color: #695448;
+        font-size: 9px;
+        line-height: 1.5;
+      }
+      .career-card {
+        padding: 15px;
+        border: 1px solid var(--line);
+        background: white;
+      }
+      .career-card-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .career-type {
+        display: inline-block;
+        margin-bottom: 7px;
+        color: var(--green);
+        font: 700 8px var(--display);
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .career-card h3 {
+        margin: 0;
+        font: 700 13px/1.35 var(--display);
+      }
+      .career-tag {
+        flex: 0 0 auto;
+        padding: 5px 7px;
+        background: #eff3eb;
+        color: var(--green);
+        font: 700 8px var(--display);
+      }
+      .career-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .career-card p {
+        margin: 10px 0 12px;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.55;
+      }
+      .career-apply {
+        min-height: 36px;
+        padding: 0 12px;
+        border: 1px solid var(--green);
+        background: white;
+        color: var(--green);
+        font: 700 10px var(--display);
+        cursor: pointer;
+      }
+      .cv-upload {
+        min-height: 64px;
+        padding: 12px;
+        border: 1px dashed #9aaba0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: #f8faf7;
+      }
+      .cv-upload input {
+        max-width: 100%;
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .cv-upload span {
+        color: var(--muted);
+        font-size: 8px;
+      }
+      .application-role {
+        margin: 0 20px;
+        padding: 12px 14px;
+        border-left: 2px solid var(--green);
+        background: #eff3eb;
+        font: 700 11px/1.45 var(--display);
+      }
+      .career-back {
+        display: block;
+        margin: 12px 20px 0;
+        padding: 8px 0;
+        border: 0;
+        background: none;
+        color: var(--green);
+        font: 700 10px var(--display);
+        text-align: left;
+        cursor: pointer;
+      }
+      .form-field {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 13px;
+      }
+      .form-field label {
+        font-size: 9px;
+        font-weight: 700;
+      }
+      .form-field input,
+      .form-field textarea,
+      .form-field select {
+        width: 100%;
+        min-height: 42px;
+        padding: 10px 11px;
+        border: 1px solid #dce3dc;
+        border-radius: 0;
+        outline-color: var(--green);
+        background: white;
+        color: var(--ink);
+        font-size: 11px;
+      }
+      .form-field textarea {
+        min-height: 94px;
+        resize: vertical;
+      }
+      .form-hint {
+        margin: 0 0 15px;
+        color: var(--muted);
+        font-size: 9px;
+        line-height: 1.5;
+      }
+      .success-message {
+        padding: 25px 20px;
+        text-align: center;
+      }
+      .success-icon {
+        width: 44px;
+        height: 44px;
+        margin: 0 auto 13px;
+        border-radius: 50%;
+        background: var(--lime);
+        display: grid;
+        place-items: center;
+        color: var(--green-dark);
+        font-size: 20px;
+      }
+      .success-message h3 {
+        margin: 0 0 8px;
+        font: 500 24px var(--serif);
+      }
+      .success-message p {
+        margin: 0 auto 17px;
+        max-width: 240px;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.6;
+      }
+      .footer-note {
+        padding: 15px 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 8px;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      .frame-index {
+        align-self: center;
+        max-width: 430px;
+      }
+      .frame-index h2 {
+        margin: 0 0 8px;
+        font: 500 30px/1.1 var(--serif);
+      }
+      .frame-index > p {
+        margin: 0 0 23px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+      .screen-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid #dbe2d9;
+      }
+      .screen-list button {
+        width: 100%;
+        padding: 12px 2px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 0;
+        border-bottom: 1px solid #dbe2d9;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+      }
+      .screen-list button[aria-current="page"] {
+        color: var(--green);
+      }
+      .screen-number {
+        width: 23px;
+        height: 23px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #cbd5cb;
+        border-radius: 50%;
+        color: #68786f;
+        font: 600 9px var(--display);
+      }
+      .screen-list button[aria-current="page"] .screen-number {
+        background: var(--green);
+        color: white;
+        border-color: var(--green);
+      }
+      .screen-name {
+        flex: 1;
+        font: 700 11px var(--display);
+      }
+      .screen-desc {
+        color: #7a8880;
+        font-size: 9px;
+      }
+      .design-note {
+        margin-top: 24px;
+        padding: 15px;
+        border-left: 2px solid var(--orange);
+        background: #fff;
+      }
+      .design-note strong {
+        display: block;
+        margin-bottom: 5px;
+        font: 700 10px var(--display);
+      }
+      .design-note p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.55;
+      }
+      .prototype-label {
+        margin-top: 17px;
+        color: #75837c;
+        font: 700 8px var(--display);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 760px) {
+        body {
+          background: white;
+        }
+        .presentation {
+          min-height: 100dvh;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+        }
+        .presentation-head {
+          width: 100%;
+          flex: 0 0 60px;
+          padding: 0 15px;
+          margin: 0;
+          border-bottom: 1px solid var(--line);
+          align-items: center;
+        }
+        .presentation-head .eyebrow {
+          margin: 0;
+          font-size: 8px;
+        }
+        .presentation h1 {
+          font-size: 13px;
+        }
+        .presentation-note {
+          font-size: 9px;
+          text-align: right;
+        }
+        .workspace {
+          flex: 1;
+          min-height: 0;
+          display: block;
+        }
+        .device {
+          width: 100%;
+          height: calc(100dvh - 60px);
+          min-height: 580px;
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+        .device-top {
+          display: none;
+        }
+        .app {
+          padding-top: 0;
+        }
+        .app-header {
+          flex-basis: 58px;
+        }
+        .frame-index {
+          display: none;
+        }
+      }
+      @media (min-width: 761px) and (max-height: 820px) {
+        .presentation {
+          padding-top: 16px;
+        }
+        .presentation-head {
+          margin-bottom: 12px;
+        }
+        .workspace {
+          min-height: 0;
+        }
+        .device {
+          height: calc(100vh - 95px);
+          min-height: 630px;
+        }
+      }
+      @media (min-width: 1000px) {
+        body {
+          background: white;
+        }
+        .presentation {
+          min-height: 100vh;
+          padding: 0;
+        }
+        .presentation-head {
+          display: none;
+        }
+        .workspace {
+          display: block;
+          width: 100%;
+          max-width: none;
+          min-height: 100vh;
+          margin: 0;
+        }
+        .frame-index,
+        .device-top,
+        .bottom-nav {
+          display: none;
+        }
+        .device {
+          width: 100%;
+          height: auto;
+          min-height: 100vh;
+          margin: 0;
+          border: 0;
+          border-radius: 0;
+          overflow: visible;
+          box-shadow: none;
+        }
+        .app {
+          min-height: 100vh;
+          height: auto;
+          padding: 0;
+        }
+        .app-header {
+          height: 82px;
+          flex: 0 0 82px;
+          padding: 0 clamp(32px, 7vw, 112px);
+          border-bottom: 1px solid var(--line);
+          position: sticky;
+          top: 0;
+        }
+        .brand-mark {
+          width: 38px;
+          height: 38px;
+        }
+        .brand-mark::before {
+          width: 26px;
+          height: 26px;
+        }
+        .brand-mark::after {
+          width: 20px;
+          height: 20px;
+        }
+        .brand-name {
+          font-size: 16px;
+        }
+        .brand-sub {
+          font-size: 8px;
+        }
+        .desktop-nav {
+          display: flex;
+          align-items: center;
+          gap: clamp(22px, 3vw, 46px);
+          margin-left: auto;
+          margin-right: 35px;
+        }
+        .header-phone {
+          margin-left: 0;
+          margin-right: 22px;
+          font-size: 12px;
+        }
+        .desktop-nav button {
+          padding: 8px 0;
+          border: 0;
+          background: none;
+          color: #52635b;
+          font: 600 12px var(--display);
+          cursor: pointer;
+        }
+        .desktop-nav button[aria-current="page"] {
+          color: var(--green);
+        }
+        .menu-button {
+          min-height: 42px;
+          padding: 0 19px;
+          background: var(--green);
+          color: white;
+          font-size: 11px;
+        }
+        .screen-wrap {
+          flex: 1;
+          overflow: visible;
+        }
+        .screen {
+          padding: 0 0 40px;
+          animation: none;
+        }
+        .hero {
+          min-height: 510px;
+          padding: 0 clamp(40px, 10vw, 160px);
+          display: grid;
+          grid-template-columns: minmax(0, 0.92fr) minmax(390px, 1.08fr);
+          align-items: center;
+          gap: 50px;
+        }
+        .hero-content {
+          padding: 50px 0;
+        }
+        .hero h2 {
+          max-width: 520px;
+          margin: 24px 0 15px;
+          font-size: clamp(56px, 6vw, 82px);
+        }
+        .hero-copy {
+          max-width: 390px;
+          font-size: 15px;
+        }
+        .hero-kicker {
+          font-size: 10px;
+        }
+        .hero-actions {
+          margin-top: 28px;
+          gap: 24px;
+        }
+        .button-primary {
+          min-height: 50px;
+          padding: 0 20px;
+          font-size: 12px;
+        }
+        .text-link {
+          font-size: 12px;
+        }
+        .hero-visual {
+          position: relative;
+          inset: auto;
+          width: 100%;
+          height: 385px;
+          border-radius: 2px;
+          box-shadow: none;
+        }
+        .hero-visual:hover .hero-slide.is-active img {
+          transform: scale(1.035);
+        }
+        .hero-slide img {
+          opacity: 0.87;
+          transition: transform 900ms cubic-bezier(0.2, 0.65, 0.25, 1);
+        }
+        .hero-slide::after {
+          background: linear-gradient(0deg, #103d3180, transparent 58%);
+        }
+        .hero-slide-label {
+          left: 24px;
+          bottom: 30px;
+          font-size: 11px;
+        }
+        .hero-controls {
+          right: 24px;
+          bottom: 24px;
+        }
+        .hero-index {
+          right: clamp(40px, 10vw, 160px);
+          bottom: 20px;
+          font-size: 10px;
+        }
+        .intro-row {
+          padding: 24px clamp(40px, 10vw, 160px);
+        }
+        .intro-row p {
+          max-width: none;
+          font-size: 17px;
+        }
+        .location {
+          font-size: 11px;
+        }
+        .section {
+          max-width: 1320px;
+          margin: auto;
+          padding: 54px clamp(40px, 7vw, 100px);
+        }
+        .journey-section {
+          max-width: none;
+          margin: 18px 0;
+          padding: 35px clamp(40px, 7vw, 100px);
+        }
+        .journey-inner {
+          max-width: 1120px;
+        }
+        .journey-section .section-heading {
+          margin-bottom: 18px;
+        }
+        .journey-section .section-heading h3 {
+          font-size: 25px;
+        }
+        .journey-step {
+          padding-top: 15px;
+        }
+        .journey-step + .journey-step {
+          padding-left: 20px;
+        }
+        .journey-step span {
+          margin-bottom: 9px;
+          font-size: 10px;
+        }
+        .journey-step h4 {
+          font-size: 13px;
+        }
+        .home-enquiry-button {
+          width: auto;
+          min-width: 245px;
+          padding: 0 22px;
+        }
+        .section-heading {
+          margin-bottom: 21px;
+        }
+        .section-heading h3 {
+          font-size: 25px;
+        }
+        .section-heading p {
+          font-size: 11px;
+        }
+        .arrow-link {
+          font-size: 12px;
+        }
+        .category-list {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 12px;
+        }
+        .category-card {
+          min-height: 150px;
+          padding: 18px;
+        }
+        .category-count {
+          font-size: 10px;
+        }
+        .category-title {
+          max-width: 180px;
+          font-size: 16px;
+        }
+        .category-arrow {
+          right: 17px;
+          bottom: 15px;
+        }
+        .company-snapshot {
+          padding: 40px clamp(40px, 7vw, 100px);
+        }
+        .company-snapshot h3 {
+          max-width: 620px;
+          margin-bottom: 20px;
+          font-size: 32px;
+        }
+        .company-facts {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 18px;
+        }
+        .company-fact {
+          padding: 14px 0;
+        }
+        .company-fact strong {
+          font-size: 14px;
+        }
+        .company-fact span {
+          font-size: 11px;
+        }
+        .home-careers {
+          max-width: 760px;
+          margin-top: 24px;
+          padding: 20px;
+        }
+        .home-careers p {
+          font-size: 11px;
+        }
+        .home-careers strong {
+          font-size: 13px;
+        }
+        .home-careers .text-link {
+          font-size: 12px;
+        }
+        .proof-strip {
+          padding: 25px clamp(40px, 10vw, 160px);
+        }
+        .proof-number {
+          font-size: 34px;
+        }
+        .proof-label {
+          max-width: none;
+          font-size: 12px;
+        }
+        .screen-title {
+          padding: 48px clamp(40px, 10vw, 160px) 38px;
+        }
+        .screen-title h2 {
+          max-width: 850px;
+          font-size: 48px;
+        }
+        .screen-title p {
+          max-width: 650px;
+          font-size: 14px;
+        }
+        .search-box {
+          max-width: 640px;
+          margin: 26px auto 16px;
+          min-height: 52px;
+        }
+        .search-box input {
+          font-size: 13px;
+        }
+        .filters {
+          justify-content: center;
+          padding-bottom: 20px;
+        }
+        .filter-chip {
+          padding: 9px 14px;
+          font-size: 11px;
+        }
+        .results-count {
+          max-width: 1000px;
+          margin: 8px auto 12px;
+          font-size: 11px;
+        }
+        .product-list {
+          max-width: 1040px;
+          margin: auto;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+        .product-card {
+          min-height: 96px;
+          grid-template-columns: 54px 1fr 20px;
+          gap: 14px;
+          padding: 15px;
+        }
+        .product-visual {
+          width: 54px;
+          height: 54px;
+        }
+        .product-card h3 {
+          font-size: 13px;
+        }
+        .product-card p {
+          font-size: 10px;
+        }
+        .detail-breadcrumb,
+        .detail-gallery,
+        .detail-heading,
+        .spec-section,
+        .supply-note,
+        .detail-enquiry {
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .detail-layout {
+          max-width: 1200px;
+          margin: auto;
+          padding: 25px 40px 0;
+          display: grid;
+          grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+          align-items: start;
+          gap: 56px;
+        }
+        .detail-media-column,
+        .detail-info-column {
+          min-width: 0;
+        }
+        .detail-gallery {
+          padding: 0;
+        }
+        .gallery-main {
+          height: 500px;
+        }
+        .gallery-thumbs {
+          gap: 10px;
+        }
+        .gallery-thumb {
+          width: 72px;
+          height: 64px;
+        }
+        .detail-heading {
+          padding: 0 0 20px;
+        }
+        .detail-heading h2 {
+          font-size: 39px;
+        }
+        .detail-heading p {
+          font-size: 12px;
+        }
+        .spec-section {
+          padding: 0 0 18px;
+        }
+        .spec-section h3 {
+          font-size: 16px;
+        }
+        .spec-table {
+          font-size: 12px;
+        }
+        .spec-table th,
+        .spec-table td {
+          padding: 13px 5px;
+        }
+        .supply-note,
+        .detail-enquiry {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .detail-enquiry {
+          padding: 20px;
+        }
+        .detail-enquiry h3 {
+          font-size: 15px;
+        }
+        .detail-enquiry p {
+          font-size: 11px;
+        }
+        .about-photo {
+          max-width: 1120px;
+          min-height: 285px;
+          margin: 0;
+          padding: 34px 40px;
+        }
+        .about-photo::before {
+          width: 370px;
+          height: 370px;
+          right: 40px;
+          top: -170px;
+          box-shadow:
+            0 0 0 34px #ffffff09,
+            0 0 0 68px #ffffff08;
+        }
+        .about-photo::after {
+          width: 150px;
+          height: 150px;
+          right: 150px;
+          top: 45px;
+        }
+        .location-kicker {
+          margin-bottom: 10px;
+          font-size: 10px;
+        }
+        .location-title {
+          font-size: 48px;
+        }
+        .location-state {
+          margin-top: 9px;
+          font-size: 12px;
+        }
+        .location-mark {
+          margin-right: 115px;
+          font-size: 40px;
+        }
+        .location-directions,
+        .location-address {
+          max-width: none;
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .location-directions {
+          font-size: 12px;
+        }
+        .location-address {
+          padding: 18px 22px;
+        }
+        .location-cluster {
+          max-width: 1120px;
+          margin: 0 auto 25px;
+        }
+        .location-address p {
+          font-size: 12px;
+        }
+        .about-snapshot {
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 20px 40px;
+          grid-template-columns: 180px 1fr;
+        }
+        .snapshot-item span {
+          font-size: 9px;
+        }
+        .snapshot-item strong {
+          font-size: 12px;
+        }
+        .copy-block,
+        .principle-list {
+          max-width: 900px;
+          margin: auto;
+          padding: 45px 40px;
+        }
+        .copy-block h3 {
+          font-size: 34px;
+        }
+        .copy-block p {
+          font-size: 14px;
+        }
+        .principle h4 {
+          font-size: 13px;
+        }
+        .principle p {
+          font-size: 11px;
+        }
+        .about-pillars {
+          max-width: 1120px;
+          margin: auto;
+          padding: 0 40px 38px;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+        .about-pillar {
+          padding: 22px;
+        }
+        .about-pillar .eyebrow {
+          font-size: 9px;
+        }
+        .about-pillar h3 {
+          font-size: 16px;
+        }
+        .about-pillar p {
+          max-width: 420px;
+          font-size: 12px;
+        }
+        .leader-message {
+          max-width: 1120px;
+          min-height: 330px;
+          margin: 0 auto 42px;
+          padding: 32px;
+          display: grid;
+          grid-template-columns: minmax(210px, 0.55fr) 1.45fr;
+          align-items: center;
+          column-gap: 34px;
+        }
+        .leader-intro {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+        .leader-photo {
+          width: 160px;
+          height: 160px;
+        }
+        .leader-copy {
+          padding: 0;
+          align-self: auto;
+        }
+        .leader-copy .eyebrow {
+          font-size: 9px;
+        }
+        .leader-message blockquote {
+          max-width: 620px;
+          font-size: clamp(20px, 2.2vw, 29px);
+        }
+        .leader-message blockquote {
+          margin-top: 0;
+          padding-top: 0;
+          border: 0;
+        }
+        .leader-copy .leader-attribution {
+          font-size: 11px;
+        }
+        .about-commitments {
+          padding: 36px max(40px, calc((100% - 1040px) / 2));
+        }
+        .about-commitments h3 {
+          font-size: 21px;
+        }
+        .commitment-list {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 18px;
+        }
+        .commitment strong {
+          font-size: 12px;
+        }
+        .commitment p,
+        .safety-note p {
+          font-size: 11px;
+        }
+        .safety-note {
+          max-width: 1040px;
+          padding: 16px;
+        }
+        .contact-layout {
+          max-width: 760px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .contact-card {
+          margin-top: 28px;
+          padding: 26px;
+        }
+        .contact-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+          align-items: stretch;
+          gap: 14px;
+        }
+        .map-panel {
+          min-height: 320px;
+          margin: 28px 0 0;
+        }
+        .contact-value {
+          font-size: 13px;
+        }
+        .career-list {
+          max-width: 1120px;
+          margin: auto;
+          padding: 18px 40px 38px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+        }
+        .career-notice {
+          max-width: 1040px;
+          margin: 26px auto 0;
+          font-size: 11px;
+        }
+        .career-card {
+          padding: 20px;
+        }
+        .career-card h3 {
+          font-size: 16px;
+        }
+        .career-card p {
+          font-size: 12px;
+        }
+        .career-meta {
+          font-size: 10px;
+        }
+        .application-role {
+          max-width: 680px;
+          margin: 20px auto 0;
+          font-size: 13px;
+        }
+        .career-back {
+          max-width: 680px;
+          margin: 12px auto 0;
+          font-size: 11px;
+        }
+        #careerForm {
+          max-width: 760px;
+          margin: auto;
+          padding: 22px 40px 40px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 20px;
+        }
+        #careerForm .form-field:nth-child(1),
+        #careerForm .form-field:nth-child(2),
+        #careerForm .form-field:nth-child(6),
+        #careerForm .form-field:nth-child(7),
+        #careerForm .form-hint,
+        #careerForm .full-button {
+          grid-column: 1 / -1;
+        }
+        #careerForm .form-hint {
+          margin-top: 0;
+        }
+        .quote-form {
+          max-width: 760px;
+          margin: auto;
+          padding: 32px 40px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 20px;
+        }
+        .quote-form .form-field:nth-last-of-type(1),
+        .quote-form .form-hint,
+        .quote-form .full-button {
+          grid-column: 1 / -1;
+        }
+        .quote-form input,
+        .quote-form select {
+          font-size: 13px;
+        }
+        .quote-form textarea {
+          min-height: 120px;
+          font-size: 13px;
+        }
+        .footer-note {
+          padding: 22px 40px;
+          font-size: 10px;
+        }
+      }
+      @media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+        .motion-ready .reveal-item:not(.is-revealed) {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        .reveal-item {
+          transition:
+            opacity 560ms ease,
+            transform 560ms cubic-bezier(0.2, 0.65, 0.25, 1);
+        }
+        .category-card {
+          transition:
+            transform 220ms ease,
+            border-color 220ms ease,
+            box-shadow 220ms ease;
+        }
+        .category-card:hover {
+          transform: translateY(-4px);
+          border-color: #c7d5c7;
+          box-shadow: 0 12px 24px #142c2710;
+        }
+        .button-primary,
+        .full-button {
+          transition:
+            transform 180ms ease,
+            box-shadow 180ms ease,
+            background-color 180ms ease;
+        }
+        .button-primary:hover,
+        .full-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 7px 16px #142c2720;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="presentation">
+      <header class="presentation-head">
+        <div>
+          <p class="eyebrow">Sinnchem Life Sciences · Website concept</p>
+          <h1>Mobile-first experience</h1>
+        </div>
+        <p class="presentation-note">Interactive design study · 6 screens</p>
+      </header>
+
+      <main class="workspace">
+        <div class="device" aria-label="Mobile website prototype">
+          <div class="device-top"><span class="device-notch"></span></div>
+          <div class="app">
+            <header class="app-header">
+              <a
+                class="brand"
+                href="#home"
+                aria-label="Sinnchem home"
+                data-go="home"
+              >
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span
+                  ><span class="brand-name">SINNCHEM</span
+                  ><span class="brand-sub">LIFE SCIENCES</span></span
+                >
+              </a>
+              <a
+                class="header-phone"
+                href="tel:+919850498435"
+                aria-label="Call Sinnchem at +91 98504 98435"
+              >
+                <span class="header-phone-mark" aria-hidden="true">☎</span>
+                <span>+91 98504 98435</span>
+              </a>
+              <nav class="desktop-nav" aria-label="Main navigation">
+                <button type="button" data-go="home" aria-current="page">
+                  Home
+                </button>
+                <button type="button" data-go="products">Products</button>
+                <button type="button" data-go="about">About Sinnchem</button>
+                <button type="button" data-go="careers">Careers</button>
+                <button type="button" data-go="contact">Contact</button>
+              </nav>
+              <button class="menu-button" type="button" data-go="quote">
+                ENQUIRE <span aria-hidden="true">↗</span>
+              </button>
+            </header>
+
+            <div class="screen-wrap" id="screenWrap" tabindex="0">
+              <section class="screen" id="home" data-screen="home">
+                <div class="hero">
+                  <div class="hero-content">
+                    <span class="hero-kicker">Chemistry for progress</span>
+                    <h2>Ideas into <em>impact.</em></h2>
+                    <p class="hero-copy">
+                      Research and manufacturing support for pharmaceutical
+                      chemistry, from lead generation to clinical.
+                    </p>
+                    <div class="hero-actions">
+                      <button
+                        class="button-primary"
+                        type="button"
+                        data-go="products"
+                      >
+                        Explore capabilities <span aria-hidden="true">↗</span>
+                      </button>
+                      <button class="text-link" type="button" data-go="about">
+                        Our story
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="hero-visual"
+                    id="heroCarousel"
+                    aria-label="Sinnchem chemistry and research images"
+                  >
+                    <div class="hero-slide is-active" aria-hidden="false">
+                      <img
+                        src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
+                        alt="Laboratory glassware used in chemistry research"
+                      />
+                      <span class="hero-slide-label"
+                        >Chemistry built around your requirements</span
+                      >
+                    </div>
+                    <div class="hero-slide" aria-hidden="true">
+                      <img
+                        src="https://images.unsplash.com/photo-1581093458791-9d15482442f1?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
+                        alt="Research team working in a laboratory"
+                      />
+                      <span class="hero-slide-label"
+                        >Research and manufacturing support</span
+                      >
+                    </div>
+                    <div class="hero-slide" aria-hidden="true">
+                      <img
+                        src="https://res.cloudinary.com/dr5kay5i6/image/upload/v1733669399/iznnecw7ntnv0dfs9vq1.jpg"
+                        alt="Sinnchem catalogue product image"
+                      />
+                      <span class="hero-slide-label"
+                        >Explore Sinnchem's chemical catalogue</span
+                      >
+                    </div>
+                    <div
+                      class="hero-controls"
+                      aria-label="Homepage image slides"
+                    >
+                      <button
+                        class="hero-dot"
+                        type="button"
+                        aria-label="Show image 1"
+                        aria-current="true"
+                      ></button>
+                      <button
+                        class="hero-dot"
+                        type="button"
+                        aria-label="Show image 2"
+                        aria-current="false"
+                      ></button>
+                      <button
+                        class="hero-dot"
+                        type="button"
+                        aria-label="Show image 3"
+                        aria-current="false"
+                      ></button>
+                    </div>
+                  </div>
+                  <span class="hero-index">HYDERABAD · INDIA</span>
+                </div>
+                <div class="intro-row">
+                  <p>Thoughtful chemistry.<br />Made for ambitious science.</p>
+                  <span class="location"
+                    ><span aria-hidden="true">⌖</span> Telangana, India</span
+                  >
+                </div>
+                <section class="section reveal-item">
+                  <div class="section-heading">
+                    <div>
+                      <p>Explore our range</p>
+                      <h3>Areas of chemistry</h3>
+                    </div>
+                    <button class="arrow-link" type="button" data-go="products">
+                      All products ↗
+                    </button>
+                  </div>
+                  <div class="category-list">
+                    <button
+                      class="category-card"
+                      type="button"
+                      data-category="Pharmaceutical Chemical"
+                      data-go="products"
+                    >
+                      <span class="category-count">08 PRODUCTS</span
+                      ><span class="category-title"
+                        >Pharmaceutical chemicals</span
+                      ><span class="category-arrow">↗</span>
+                    </button>
+                    <button
+                      class="category-card"
+                      type="button"
+                      data-category="Speciality Chemical"
+                      data-go="products"
+                    >
+                      <span class="category-count">02 PRODUCTS</span
+                      ><span class="category-title">Speciality chemicals</span
+                      ><span class="category-arrow">↗</span>
+                    </button>
+                    <button
+                      class="category-card"
+                      type="button"
+                      data-category="Plant Growth Regulator"
+                      data-go="products"
+                    >
+                      <span class="category-count">01 PRODUCT</span
+                      ><span class="category-title"
+                        >Plant growth regulators</span
+                      ><span class="category-arrow">↗</span>
+                    </button>
+                    <button
+                      class="category-card"
+                      type="button"
+                      data-category="Agriculture Herbicide"
+                      data-go="products"
+                    >
+                      <span class="category-count">01 PRODUCT</span
+                      ><span class="category-title">Agriculture herbicides</span
+                      ><span class="category-arrow">↗</span>
+                    </button>
+                  </div>
+                </section>
+                <div class="proof-strip reveal-item">
+                  <span class="proof-number">01—04</span
+                  ><span class="proof-label"
+                    >Chemistry categories across pharmaceutical and allied
+                    sectors</span
+                  ><span aria-hidden="true">✳</span>
+                </div>
+                <section
+                  class="company-snapshot reveal-item"
+                  aria-labelledby="homeSnapshotHeading"
+                >
+                  <div class="company-snapshot-inner">
+                    <p class="eyebrow">Sinnchem at a glance</p>
+                    <h3 id="homeSnapshotHeading">
+                      A focused partner for chemistry-led development.
+                    </h3>
+                    <div class="company-facts">
+                      <div class="company-fact">
+                        <strong>Since 2021</strong>
+                        <span>Established in Hyderabad, Telangana</span>
+                      </div>
+                      <div class="company-fact">
+                        <strong>R&amp;D to clinical</strong>
+                        <span
+                          >Support stated from lead generation through clinical
+                          studies</span
+                        >
+                      </div>
+                      <div class="company-fact">
+                        <strong>Fine chemicals &amp; APIs</strong>
+                        <span>Areas named in the company profile</span>
+                      </div>
+                      <div class="company-fact">
+                        <strong>Custom synthesis</strong>
+                        <span
+                          >Manufacturing and research partnership focus</span
+                        >
+                      </div>
+                    </div>
+                    <div class="home-careers">
+                      <p>
+                        <strong>Build your career in chemistry</strong>Explore
+                        illustrative early-career and experienced-role
+                        opportunities.
+                      </p>
+                      <button class="text-link" type="button" data-go="careers">
+                        Explore careers ↗
+                      </button>
+                    </div>
+                  </div>
+                </section>
+                <section class="journey-section reveal-item">
+                  <div class="journey-inner">
+                    <div class="section-heading">
+                      <div>
+                        <p>Research &amp; manufacturing support</p>
+                        <h3>Along the R&amp;D journey</h3>
+                      </div>
+                    </div>
+                    <div class="journey-steps">
+                      <div class="journey-step">
+                        <span>01</span>
+                        <h4>Lead generation</h4>
+                      </div>
+                      <div class="journey-step">
+                        <span>02</span>
+                        <h4>Development support</h4>
+                      </div>
+                      <div class="journey-step">
+                        <span>03</span>
+                        <h4>Clinical stage</h4>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="section reveal-item">
+                  <div class="section-heading">
+                    <div>
+                      <p>Start a conversation</p>
+                      <h3>Have a molecule in mind?</h3>
+                    </div>
+                  </div>
+                  <p
+                    style="
+                      margin: 0 0 13px;
+                      color: var(--muted);
+                      font-size: 10px;
+                      line-height: 1.6;
+                    "
+                  >
+                    Tell us what you are developing. Our team can help you
+                    explore the right chemistry support.
+                  </p>
+                  <button
+                    class="full-button home-enquiry-button"
+                    type="button"
+                    data-go="quote"
+                  >
+                    Discuss your requirement ↗
+                  </button>
+                </section>
+                <div class="footer-note">
+                  Sinnchem Life Sciences (OPC) Private Limited · Hyderabad,
+                  India
+                </div>
+              </section>
+
+              <section
+                class="screen"
+                id="products"
+                data-screen="products"
+                hidden
+              >
+                <div class="screen-title">
+                  <p class="eyebrow">Product directory</p>
+                  <h2>Find your chemistry.</h2>
+                  <p>
+                    Browse the products and categories currently listed by
+                    Sinnchem.
+                  </p>
+                </div>
+                <label class="search-box"
+                  ><span aria-hidden="true">⌕</span
+                  ><input
+                    id="productSearch"
+                    type="search"
+                    placeholder="Search product or category"
+                    aria-label="Search products"
+                /></label>
+                <div
+                  class="filters"
+                  role="group"
+                  aria-label="Filter product category"
+                >
+                  <button
+                    class="filter-chip"
+                    type="button"
+                    aria-pressed="true"
+                    data-filter="all"
+                  >
+                    All products
+                  </button>
+                  <button
+                    class="filter-chip"
+                    type="button"
+                    aria-pressed="false"
+                    data-filter="Pharmaceutical Chemical"
+                  >
+                    Pharmaceutical
+                  </button>
+                  <button
+                    class="filter-chip"
+                    type="button"
+                    aria-pressed="false"
+                    data-filter="Speciality Chemical"
+                  >
+                    Speciality
+                  </button>
+                  <button
+                    class="filter-chip"
+                    type="button"
+                    aria-pressed="false"
+                    data-filter="Plant Growth Regulator"
+                  >
+                    Plant growth
+                  </button>
+                  <button
+                    class="filter-chip"
+                    type="button"
+                    aria-pressed="false"
+                    data-filter="Agriculture Herbicide"
+                  >
+                    Agriculture
+                  </button>
+                  <button
+                    class="filter-chip"
+                    type="button"
+                    aria-pressed="false"
+                    data-filter="New Items"
+                  >
+                    New items
+                  </button>
+                </div>
+                <p class="results-count" id="resultsCount">
+                  17 catalogue listings
+                </p>
+                <div
+                  class="product-list"
+                  id="productList"
+                  aria-live="polite"
+                ></div>
+                <div class="footer-note">
+                  Need a specification or availability update?
+                  <button class="arrow-link" type="button" data-go="quote">
+                    Contact our team ↗
+                  </button>
+                </div>
+              </section>
+
+              <section class="screen" id="detail" data-screen="detail" hidden>
+                <div class="detail-breadcrumb">
+                  <button type="button" data-go="products">Products</button> /
+                  <span id="detailBreadcrumbCategory"
+                    >Pharmaceutical Chemical</span
+                  >
+                </div>
+                <div class="detail-layout">
+                  <div class="detail-media-column">
+                    <div class="detail-gallery">
+                      <div class="gallery-main">
+                        <img id="detailImage" src="" alt="" />
+                      </div>
+                      <div
+                        class="gallery-thumbs"
+                        id="galleryThumbs"
+                        aria-label="Product images"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="detail-info-column">
+                    <div class="detail-heading">
+                      <p class="eyebrow" id="detailCategory">
+                        Pharmaceutical Chemical
+                      </p>
+                      <h2 id="detailName">
+                        Methyl 2-Amino-4,6-dihydroxy Nicotinate
+                      </h2>
+                      <p id="detailIntro">
+                        Product information published in Sinnchem's current
+                        catalogue.
+                      </p>
+                    </div>
+                    <section class="spec-section" aria-labelledby="specHeading">
+                      <h3 id="specHeading">Product specifications</h3>
+                      <table class="spec-table">
+                        <tbody id="specRows"></tbody>
+                      </table>
+                    </section>
+                    <p class="supply-note">
+                      <strong>Specifications &amp; availability</strong
+                      >Published values are indicative catalogue information.
+                      Confirm the current specification, documentation, pricing,
+                      and supply timeline directly with Sinnchem before
+                      ordering.
+                    </p>
+                    <section class="detail-enquiry">
+                      <h3>Discuss this product</h3>
+                      <p>
+                        Share your required quantity, pack preference, and
+                        destination to help the team respond with relevant
+                        commercial information.
+                      </p>
+                      <button
+                        class="full-button"
+                        type="button"
+                        data-product-quote
+                      >
+                        Request product information ↗
+                      </button>
+                      <button
+                        class="full-button secondary"
+                        type="button"
+                        data-go="contact"
+                      >
+                        Talk to Sinnchem
+                      </button>
+                    </section>
+                  </div>
+                </div>
+                <div class="footer-note">
+                  Product specifications should be confirmed directly with
+                  Sinnchem.
+                </div>
+              </section>
+
+              <section class="screen" id="about" data-screen="about" hidden>
+                <div class="screen-title">
+                  <p class="eyebrow">Sinnchem Life Sciences</p>
+                  <h2>
+                    Research-led chemistry.<br />Responsible partnerships.
+                  </h2>
+                  <p>
+                    A Hyderabad-based contract research and manufacturing
+                    organization supporting R&amp;D programs from lead
+                    generation to clinical studies.
+                  </p>
+                </div>
+                <div class="location-cluster">
+                  <div class="about-photo">
+                    <span>
+                      <span class="location-kicker">SINNCHEM IN INDIA</span>
+                      <strong class="location-title">Hyderabad</strong>
+                      <span class="location-state"
+                        >Telangana · IDA Cherlaplly</span
+                      >
+                      <span class="location-description"
+                        >Contract research &amp; manufacturing</span
+                      >
+                    </span>
+                    <span class="location-mark" aria-hidden="true">⌖</span>
+                  </div>
+                  <a
+                    class="location-directions"
+                    href="https://maps.google.com/?q=Plot+No+119%2F5%2C+Phase-2%2C+IDA+Cherlaplly%2C+Hyderabad+500051%2C+Telangana%2C+India"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >View location in Google Maps ↗</a
+                  >
+                  <div class="location-address">
+                    <span aria-hidden="true">⌖</span>
+                    <p>
+                      Plot No 119/5, Phase-2, IDA Cherlaplly, Hyderabad -
+                      500051, Telangana, India
+                    </p>
+                  </div>
+                </div>
+                <div class="about-snapshot">
+                  <div class="snapshot-item">
+                    <span>Established</span>
+                    <strong>2021</strong>
+                  </div>
+                  <div class="snapshot-item">
+                    <span>Company</span>
+                    <strong
+                      >Sinnchem Life Sciences (OPC) Private Limited</strong
+                    >
+                  </div>
+                </div>
+                <div class="copy-block">
+                  <h3>Built around the work behind every molecule.</h3>
+                  <p>
+                    Sinnchem Life Sciences (OPC) Private Limited describes
+                    itself as a manufacturer of industrial chemicals and a
+                    contract research and manufacturing organization. The
+                    company states that it supports R&amp;D programs from lead
+                    generation through clinical studies, including work in fine
+                    chemicals and APIs.
+                  </p>
+                  <p>
+                    Its public company profile places client satisfaction,
+                    quality, safety, and ethical practices at the center of that
+                    work. Product and project requirements can be discussed
+                    directly with the team.
+                  </p>
+                </div>
+                <div class="about-pillars">
+                  <article class="about-pillar">
+                    <p class="eyebrow">Our vision</p>
+                    <h3>Service that earns lasting confidence.</h3>
+                    <p>
+                      Sinnchem states its vision is to achieve high customer
+                      satisfaction through exceptional service in custom
+                      synthesis and manufacturing.
+                    </p>
+                  </article>
+                  <article class="about-pillar">
+                    <p class="eyebrow">Our mission</p>
+                    <h3>Practical solutions, delivered with care.</h3>
+                    <p>
+                      The company says it is committed to innovative and
+                      cost-effective solutions delivered in a timely manner.
+                    </p>
+                  </article>
+                </div>
+                <section
+                  class="leader-message"
+                  aria-labelledby="leaderMessageHeading"
+                >
+                  <div class="leader-intro">
+                    <img
+                      class="leader-photo"
+                      src="https://res.cloudinary.com/dr5kay5i6/image/upload/v1734634678/sinnchem/CEO_picture_BmWXkzW_zyyikz.png"
+                      alt="Sinnchem CEO"
+                      loading="lazy"
+                    />
+                    <div class="leader-copy">
+                      <p class="eyebrow" id="leaderMessageHeading">
+                        A message from our CEO
+                      </p>
+                      <h3>Chief Executive Officer</h3>
+                      <p class="leader-attribution">Sinnchem Life Sciences</p>
+                    </div>
+                  </div>
+                  <blockquote>
+                    “At Sinnchem Life Sciences, we are committed to delivering
+                    quality services and building lasting partnerships… Our
+                    focus on health, safety, and ethical practices ensures a
+                    sustainable future.”
+                  </blockquote>
+                </section>
+                <section
+                  class="about-commitments"
+                  aria-labelledby="commitmentsHeading"
+                >
+                  <h3 id="commitmentsHeading">
+                    What clients can expect us to focus on
+                  </h3>
+                  <div class="commitment-list">
+                    <div class="commitment">
+                      <strong>Product quality</strong>
+                      <p>A stated priority across products and services.</p>
+                    </div>
+                    <div class="commitment">
+                      <strong>Research confidentiality</strong>
+                      <p>
+                        Sinnchem identifies confidentiality as a reason to work
+                        with the company.
+                      </p>
+                    </div>
+                    <div class="commitment">
+                      <strong>Cost-effectiveness</strong>
+                      <p>
+                        Solutions are described as innovative and
+                        cost-conscious.
+                      </p>
+                    </div>
+                    <div class="commitment">
+                      <strong>Timely delivery</strong>
+                      <p>
+                        Timeliness is part of the company’s stated mission and
+                        approach.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="safety-note">
+                    <strong>Health, safety &amp; ethical practice</strong>
+                    <p>
+                      Sinnchem describes health and safety as core values and
+                      states a “Zero Harm” aspiration for employees, partners,
+                      and the community. This is a company-stated commitment,
+                      not a third-party certification claim.
+                    </p>
+                  </div>
+                </section>
+                <div class="section">
+                  <button class="full-button" type="button" data-go="contact">
+                    Connect with our team ↗
+                  </button>
+                </div>
+              </section>
+
+              <section class="screen" id="contact" data-screen="contact" hidden>
+                <div class="screen-title">
+                  <p class="eyebrow">Reach our team</p>
+                  <h2>Let's talk chemistry.</h2>
+                  <p>
+                    For product details, partnerships, and business enquiries.
+                  </p>
+                </div>
+                <div class="contact-layout">
+                  <div class="contact-card">
+                    <h3>Sinnchem Life Sciences</h3>
+                    <div class="contact-item">
+                      <span class="contact-label">Visit</span
+                      ><span class="contact-value"
+                        >Plot No 119/5, Phase-2, IDA Cherlaplly, Hyderabad -
+                        500051, Telangana, India</span
+                      >
+                    </div>
+                    <div class="contact-item">
+                      <span class="contact-label">Email</span
+                      ><a class="contact-value" href="mailto:info@sinnchem.com"
+                        >info@sinnchem.com</a
+                      >
+                    </div>
+                    <div class="contact-item">
+                      <span class="contact-label">Call</span
+                      ><a class="contact-value" href="tel:+919850498435"
+                        >+91 98504 98435</a
+                      >
+                    </div>
+                    <button class="full-button" type="button" data-go="quote">
+                      Send a business enquiry ↗
+                    </button>
+                    <div class="contact-actions">
+                      <a class="contact-action" href="tel:+919850498435"
+                        >Call team</a
+                      >
+                      <a class="contact-action" href="mailto:info@sinnchem.com"
+                        >Email team</a
+                      >
+                    </div>
+                  </div>
+                  <a
+                    class="map-panel"
+                    href="https://maps.google.com/?q=Plot+No+119%2F5%2C+Phase-2%2C+IDA+Cherlaplly%2C+Hyderabad+500051%2C+Telangana%2C+India"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span class="map-panel-kicker">Sinnchem in India</span>
+                    <span>
+                      <strong class="map-panel-place">Hyderabad</strong>
+                      <span class="map-panel-area"
+                        >IDA Cherlaplly · Telangana</span
+                      >
+                    </span>
+                    <span class="map-panel-action">Open directions ↗</span>
+                  </a>
+                </div>
+                <div class="footer-note">
+                  Sinnchem Life Sciences (OPC) Private Limited
+                </div>
+              </section>
+
+              <section class="screen" id="careers" data-screen="careers" hidden>
+                <div class="screen-title">
+                  <p class="eyebrow">Careers at Sinnchem</p>
+                  <h2>Bring your curiosity to chemistry.</h2>
+                  <p>
+                    Explore example roles across laboratory research, quality,
+                    and process chemistry in Hyderabad.
+                  </p>
+                </div>
+                <p class="career-notice">
+                  These are draft sample listings for this website concept, not
+                  confirmed live vacancies. Sinnchem should approve role titles,
+                  eligibility, experience requirements, and availability before
+                  publishing.
+                </p>
+                <div class="career-list">
+                  <article class="career-card">
+                    <div class="career-card-top">
+                      <div>
+                        <span class="career-type"
+                          >Early career · Chemistry</span
+                        >
+                        <h3>Laboratory Chemist</h3>
+                      </div>
+                      <span class="career-tag">B.Sc. / M.Sc.</span>
+                    </div>
+                    <div class="career-meta">
+                      <span>Hyderabad</span
+                      ><span>0–2 years · illustrative</span>
+                    </div>
+                    <p>
+                      Support day-to-day laboratory work, sample preparation,
+                      reaction monitoring, and accurate recording of results.
+                      Chemistry graduates with careful lab practice are
+                      encouraged to apply.
+                    </p>
+                    <button
+                      class="career-apply"
+                      type="button"
+                      data-apply-role="Laboratory Chemist"
+                    >
+                      Apply now ↗
+                    </button>
+                  </article>
+                  <article class="career-card">
+                    <div class="career-card-top">
+                      <div>
+                        <span class="career-type"
+                          >Research · Organic chemistry</span
+                        >
+                        <h3>Research Associate</h3>
+                      </div>
+                      <span class="career-tag">M.Sc.</span>
+                    </div>
+                    <div class="career-meta">
+                      <span>Hyderabad</span
+                      ><span>0–3 years · illustrative</span>
+                    </div>
+                    <p>
+                      Contribute to synthesis and development projects through
+                      experiment planning, reaction execution, work-up, and
+                      documentation under project guidance.
+                    </p>
+                    <button
+                      class="career-apply"
+                      type="button"
+                      data-apply-role="Research Associate"
+                    >
+                      Apply now ↗
+                    </button>
+                  </article>
+                  <article class="career-card">
+                    <div class="career-card-top">
+                      <div>
+                        <span class="career-type">Quality · Laboratory</span>
+                        <h3>Quality Control Analyst</h3>
+                      </div>
+                      <span class="career-tag">B.Sc. / M.Sc.</span>
+                    </div>
+                    <div class="career-meta">
+                      <span>Hyderabad</span
+                      ><span>1–3 years · illustrative</span>
+                    </div>
+                    <p>
+                      Assist with sample testing, laboratory records, and
+                      reporting. Relevant analytical chemistry experience and
+                      careful documentation are valued.
+                    </p>
+                    <button
+                      class="career-apply"
+                      type="button"
+                      data-apply-role="Quality Control Analyst"
+                    >
+                      Apply now ↗
+                    </button>
+                  </article>
+                  <article class="career-card">
+                    <div class="career-card-top">
+                      <div>
+                        <span class="career-type"
+                          >Experienced · Process chemistry</span
+                        >
+                        <h3>Process Chemist</h3>
+                      </div>
+                      <span class="career-tag">M.Sc. + experience</span>
+                    </div>
+                    <div class="career-meta">
+                      <span>Hyderabad</span><span>2+ years · illustrative</span>
+                    </div>
+                    <p>
+                      Bring practical process chemistry experience to route
+                      execution, optimization support, scale-up activities, and
+                      clear technical reporting.
+                    </p>
+                    <button
+                      class="career-apply"
+                      type="button"
+                      data-apply-role="Process Chemist"
+                    >
+                      Apply now ↗
+                    </button>
+                  </article>
+                </div>
+                <div class="application-role" id="applicationRoleLabel">
+                  Application details
+                </div>
+                <button
+                  class="career-back"
+                  id="careerBack"
+                  type="button"
+                  hidden
+                >
+                  ← Back to roles
+                </button>
+                <form class="quote-form" id="careerForm">
+                  <div class="form-field">
+                    <label for="careerName">Full name</label>
+                    <input
+                      id="careerName"
+                      name="name"
+                      autocomplete="name"
+                      required
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="careerEmail">Email address</label>
+                    <input
+                      id="careerEmail"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="careerPhone">Mobile number</label>
+                    <input
+                      id="careerPhone"
+                      name="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      required
+                      placeholder="+91"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="careerRole">Role</label>
+                    <select id="careerRole" name="role" required>
+                      <option value="">Select a role</option>
+                      <option>Laboratory Chemist</option>
+                      <option>Research Associate</option>
+                      <option>Quality Control Analyst</option>
+                      <option>Process Chemist</option>
+                      <option>Other / General application</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="careerEducation"
+                      >Highest education qualification</label
+                    >
+                    <select id="careerEducation" name="education" required>
+                      <option value="">Select qualification</option>
+                      <option>B.Sc.</option>
+                      <option>M.Sc.</option>
+                      <option>M.Pharm.</option>
+                      <option>Ph.D.</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="careerDiscipline"
+                      >Specialization / discipline</label
+                    >
+                    <input
+                      id="careerDiscipline"
+                      name="discipline"
+                      required
+                      placeholder="e.g. Organic Chemistry"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="careerExperience"
+                      >Total industry experience (years)</label
+                    >
+                    <input
+                      id="careerExperience"
+                      name="experience"
+                      type="number"
+                      min="0"
+                      max="60"
+                      step="0.5"
+                      required
+                      placeholder="0 for fresher"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="careerLocation">Current city</label>
+                    <input
+                      id="careerLocation"
+                      name="city"
+                      autocomplete="address-level2"
+                      required
+                      placeholder="City, state"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="careerCv">Updated CV</label>
+                    <div class="cv-upload">
+                      <input
+                        id="careerCv"
+                        name="cv"
+                        type="file"
+                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        required
+                      />
+                      <span>PDF or Word document · up to 5 MB</span>
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <label for="careerNote">Short note (optional)</label>
+                    <textarea
+                      id="careerNote"
+                      name="note"
+                      placeholder="A short introduction or relevant experience"
+                    ></textarea>
+                  </div>
+                  <p class="form-hint">
+                    Prototype only: your details and selected CV are not sent or
+                    stored. Connect this form to Sinnchem’s approved hiring
+                    inbox or applicant tracking system before launch.
+                  </p>
+                  <button class="full-button" type="submit">
+                    Review application ↗
+                  </button>
+                </form>
+                <div class="success-message" id="careerSuccess" hidden>
+                  <span class="success-icon" aria-hidden="true">✓</span>
+                  <h3>Application ready.</h3>
+                  <p>
+                    This prototype does not send your application or CV. Contact
+                    info@sinnchem.com to ask about current opportunities.
+                  </p>
+                  <button
+                    class="full-button secondary"
+                    type="button"
+                    data-go="home"
+                  >
+                    Back to home
+                  </button>
+                </div>
+                <div class="footer-note">
+                  Illustrative roles only · Confirm current openings and
+                  requirements with Sinnchem.
+                </div>
+              </section>
+
+              <section class="screen" id="quote" data-screen="quote" hidden>
+                <div class="screen-title">
+                  <p class="eyebrow">Business enquiry</p>
+                  <h2>Tell us what you need.</h2>
+                  <p>
+                    Share a few details and Sinnchem's team can follow up with
+                    you.
+                  </p>
+                </div>
+                <form class="quote-form" id="quoteForm">
+                  <div class="form-field">
+                    <label for="name">Name</label
+                    ><input
+                      id="name"
+                      name="name"
+                      autocomplete="name"
+                      required
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="company">Company</label
+                    ><input
+                      id="company"
+                      name="company"
+                      autocomplete="organization"
+                      placeholder="Company name"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="email">Work email</label
+                    ><input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="phone">Phone</label
+                    ><input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      placeholder="+91"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="interest">Area of interest</label
+                    ><select id="interest" name="interest">
+                      <option value="">Select a category</option>
+                      <option>Pharmaceutical Chemical</option>
+                      <option>Speciality Chemical</option>
+                      <option>Plant Growth Regulator</option>
+                      <option>Agriculture Herbicide</option>
+                      <option>Contract research &amp; manufacturing</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="requirement">Requirement</label
+                    ><textarea
+                      id="requirement"
+                      name="requirement"
+                      required
+                      placeholder="Product name, quantity, or project context"
+                    ></textarea>
+                  </div>
+                  <p class="form-hint">
+                    This demo does not send or store your information. Contact
+                    Sinnchem directly at info@sinnchem.com.
+                  </p>
+                  <button class="full-button" type="submit">
+                    Review enquiry ↗
+                  </button>
+                </form>
+                <div class="success-message" id="successMessage" hidden>
+                  <span class="success-icon" aria-hidden="true">✓</span>
+                  <h3>Enquiry noted.</h3>
+                  <p>
+                    This prototype does not transmit data. Please email
+                    info@sinnchem.com to reach the Sinnchem team.
+                  </p>
+                  <button
+                    class="full-button secondary"
+                    type="button"
+                    data-go="home"
+                  >
+                    Back to home
+                  </button>
+                </div>
+                <div class="footer-note">
+                  Your information is not transmitted in this prototype.
+                </div>
+              </section>
+            </div>
+
+            <nav class="bottom-nav" aria-label="Main navigation">
+              <button type="button" data-go="home" aria-current="page">
+                <span class="nav-icon" aria-hidden="true">⌂</span
+                ><span>Home</span>
+              </button>
+              <button type="button" data-go="products">
+                <span class="nav-icon" aria-hidden="true">+</span
+                ><span>Products</span>
+              </button>
+              <button type="button" data-go="careers">
+                <span class="nav-icon" aria-hidden="true">＋</span
+                ><span>Careers</span>
+              </button>
+              <button type="button" data-go="about">
+                <span class="nav-icon" aria-hidden="true">S</span
+                ><span>Company</span>
+              </button>
+              <button type="button" data-go="contact">
+                <span class="nav-icon" aria-hidden="true">↗</span
+                ><span>Contact</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <aside class="frame-index" aria-label="Prototype screens">
+          <p class="eyebrow">Prototype map · Mobile</p>
+          <h2>A clear path from discovery to enquiry.</h2>
+          <p>
+            Tap through the primary B2B journeys. The frame is designed at a
+            390px mobile width, with familiar bottom navigation and product-led
+            enquiry flows.
+          </p>
+          <ol class="screen-list">
+            <li>
+              <button type="button" data-go="home" aria-current="page">
+                <span class="screen-number">01</span
+                ><span class="screen-name">Home</span
+                ><span class="screen-desc">Discover</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-go="products">
+                <span class="screen-number">02</span
+                ><span class="screen-name">Products</span
+                ><span class="screen-desc">Search &amp; filter</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-go="detail">
+                <span class="screen-number">03</span
+                ><span class="screen-name">Product detail</span
+                ><span class="screen-desc">Enquire</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-go="about">
+                <span class="screen-number">04</span
+                ><span class="screen-name">About</span
+                ><span class="screen-desc">Company profile</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-go="contact">
+                <span class="screen-number">05</span
+                ><span class="screen-name">Contact</span
+                ><span class="screen-desc">Reach the team</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-go="careers">
+                <span class="screen-number">06</span
+                ><span class="screen-name">Careers</span
+                ><span class="screen-desc">Roles &amp; applications</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-go="quote">
+                <span class="screen-number">07</span
+                ><span class="screen-name">Request information</span
+                ><span class="screen-desc">Lead capture</span>
+              </button>
+            </li>
+          </ol>
+          <div class="design-note">
+            <strong>Design direction</strong>
+            <p>
+              Confident botanical green, a restrained citrus accent, editorial
+              display type, direct product discovery, and contact-first
+              conversion.
+            </p>
+          </div>
+          <p class="prototype-label">
+            Concept only · Not an official Sinnchem website
+          </p>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      const products = [
+        {
+          name: "Methyl 2-Amino-4,6-dihydroxy Nicotinate",
+          category: "Pharmaceutical Chemical",
+        },
+        { name: "6-Chloro Uracil", category: "Pharmaceutical Chemical" },
+        {
+          name: "4-Acetyl-2-Methyl Benzonitrile",
+          category: "Pharmaceutical Chemical",
+        },
+        {
+          name: "Ethyl-4-Chloro-3-Hydroxy-5-Nitrobenzoate",
+          category: "Pharmaceutical Chemical",
+        },
+        {
+          name: "Tert-Butyl-4-Chloro-3-Hydroxy-5-Nitrobenzoate",
+          category: "Pharmaceutical Chemical",
+        },
+        { name: "Barbituric Acid", category: "Pharmaceutical Chemical" },
+        {
+          name: "2-Chloro-6-Trifluoromethyl Nicotinic Acid",
+          category: "Pharmaceutical Chemical",
+        },
+        { name: "Dimethyl 2-Methoxymalonate", category: "Speciality Chemical" },
+        {
+          name: "Dimethyl Acetone Dicarboxylate",
+          category: "Speciality Chemical",
+        },
+        {
+          name: "N-Acetyl Thiazolidine-4-Carboxylic Acid (NATCA)",
+          category: "Plant Growth Regulator",
+        },
+        { name: "N-Methyl Sulfamide", category: "Agriculture Herbicide" },
+        { name: "2,8-Dichloroquinoxaline", category: "New Items" },
+        { name: "6-Bromo-3-Chloroisoquinoline", category: "New Items" },
+        {
+          name: "tert-Butyl 3,3-difluro-1,8-diazaspiro [4,5] decane-8carboxylate",
+          category: "New Items",
+        },
+        { name: "2,5-Dichloroquinoxaline", category: "New Items" },
+        { name: "3,6-Dichloro-2,7-Naphthyridine", category: "New Items" },
+        {
+          name: "Methyl Acetimidate Hydrochloride",
+          category: "Pharmaceutical Chemical",
+        },
+      ];
+      const productImages = {
+        "Methyl 2-Amino-4,6-dihydroxy Nicotinate": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733669399/iznnecw7ntnv0dfs9vq1.jpg",
+        ],
+        "6-Chloro Uracil": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733762719/owfpuoru2qvjqhfi2a9e.jpg",
+        ],
+        "4-Acetyl-2-Methyl Benzonitrile": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733763524/a5uaxxbnugdwb7naxiqt.jpg",
+        ],
+        "Ethyl-4-Chloro-3-Hydroxy-5-Nitrobenzoate": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733766154/dsmfvucdsmzaz80jhd0i.png",
+        ],
+        "Tert-Butyl-4-Chloro-3-Hydroxy-5-Nitrobenzoate": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733767389/ls9ancyopspnz7mh8dms.png",
+        ],
+        "Barbituric Acid": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733767868/cjyo3u6xfxy0zlzoqdca.png",
+        ],
+        "2-Chloro-6-Trifluoromethyl Nicotinic Acid": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733768370/ihgvshvuvxylynnsyint.png",
+        ],
+        "Dimethyl 2-Methoxymalonate": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733768974/watvlp6luyodebq9xsoc.jpg",
+        ],
+        "Dimethyl Acetone Dicarboxylate": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733769367/liwhhqqcgvhphchszir4.jpg",
+        ],
+        "N-Acetyl Thiazolidine-4-Carboxylic Acid (NATCA)": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733769732/txjjuaaltlbwz2ujom5z.jpg",
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733769740/fdsjkfv5jaw6inja8e4z.png",
+        ],
+        "N-Methyl Sulfamide": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733770730/uvhprtzgnit8aqi6l1at.png",
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733770743/qzdlfy5qguebpzyd0bux.png",
+        ],
+        "2,8-Dichloroquinoxaline": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733838570/aapuclifm6lpicgswbqq.jpg",
+        ],
+        "6-Bromo-3-Chloroisoquinoline": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733838810/e9khawjrtegbnqbyw0v3.jpg",
+        ],
+        "2,5-Dichloroquinoxaline": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733840541/zzigmtazd3etsz72kr8zl.jpg",
+        ],
+        "3,6-Dichloro-2,7-Naphthyridine": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733840830/zzigmtazd1ehy3ufxy2r.jpg",
+        ],
+        "Methyl Acetimidate Hydrochloride": [
+          "https://res.cloudinary.com/dr5kay5i6/image/upload/v1733841782/c68d0kbronlqafjoduif.png",
+        ],
+      };
+      const productSpecs = {
+        "Methyl 2-Amino-4,6-dihydroxy Nicotinate": [
+          ["CAS No.", "523992-26-9"],
+          ["Chemical formula", "C7H8N2O4"],
+          ["Molecular weight", "Request specification"],
+          ["Purity", ">98% (HPLC)"],
+          ["Grade", "Reagent Grade"],
+          ["Physical form", "Solid"],
+          ["Packaging", "1 kg can"],
+          ["Country of origin", "Made in India"],
+        ],
+        "Dimethyl 2-Methoxymalonate": [
+          ["CAS No.", "5018-30-4"],
+          ["Chemical formula", "Request specification"],
+          ["Molecular weight", "Request specification"],
+          ["Purity", ">96%"],
+          ["Grade", "Reagent Grade; Industrial Grade standard"],
+          ["Physical form", "Liquid"],
+          ["Packaging", "Bottle"],
+          ["Minimum order quantity", "5 kg"],
+          ["Country of origin", "Made in India"],
+        ],
+        "N-Acetyl Thiazolidine-4-Carboxylic Acid (NATCA)": [
+          ["CAS No.", "5025-82-1"],
+          ["Chemical formula", "Request specification"],
+          ["Molecular weight", "Request specification"],
+          ["Purity", ">99% (HPLC)"],
+          ["Grade", "Reagent Grade; Industrial Grade standard"],
+          ["Physical form", "Powder"],
+          ["Minimum order quantity", "1 kg"],
+          ["Country of origin", "Made in India"],
+        ],
+        "N-Methyl Sulfamide": [
+          ["CAS No.", "72179-84-1"],
+          ["Chemical formula", "Request specification"],
+          ["Molecular weight", "Request specification"],
+          ["Grade", "Chemical Grade"],
+          ["Physical form", "Powder"],
+          ["Packaging", "As per customer requirement"],
+          ["Minimum order quantity", "1 kg"],
+          ["Country of origin", "Made in India"],
+        ],
+        "2,8-Dichloroquinoxaline": [
+          ["CAS No.", "120258-69-7"],
+          ["Chemical formula", "C8H4N2Cl2"],
+          ["Molecular weight", "Request specification"],
+          ["Purity", "98%"],
+          ["Grade", "Reagent Grade"],
+          ["Physical form", "Solid"],
+          ["Country of origin", "Made in India"],
+        ],
+      };
+      const defaultSpecs = [
+        ["CAS No.", "Request specification"],
+        ["Chemical formula", "Request specification"],
+        ["Molecular weight", "Request specification"],
+        ["Purity", "Request specification"],
+        ["Grade", "Request specification"],
+        ["Physical form", "Request specification"],
+        ["Packaging / MOQ", "Request current options"],
+        ["Country of origin", "Confirm with Sinnchem"],
+      ];
+      const screenWrap = document.getElementById("screenWrap");
+      const searchInput = document.getElementById("productSearch");
+      let activeFilter = "all";
+      let activeProduct = products[0];
+
+      products.forEach((product) => {
+        product.images = productImages[product.name] || [];
+      });
+
+      function renderProductDetails(product) {
+        activeProduct = product;
+        document.getElementById("detailName").textContent = product.name;
+        document.getElementById("detailCategory").textContent =
+          product.category;
+        document.getElementById("detailBreadcrumbCategory").textContent =
+          product.category;
+        document.getElementById("detailIntro").textContent =
+          product.category === "New Items"
+            ? "Recently listed in Sinnchem's public catalogue. Request current product specifications and availability."
+            : "Product information published in Sinnchem's current catalogue.";
+
+        const mainImage = document.getElementById("detailImage");
+        const imageList = product.images.length ? product.images : [];
+        mainImage.hidden = !imageList.length;
+        mainImage.src = imageList[0] || "";
+        mainImage.alt = imageList.length
+          ? `${product.name} catalogue product image`
+          : "No catalogue image published for this product";
+        const gallery = document.getElementById("galleryThumbs");
+        gallery.replaceChildren();
+        imageList.forEach((image, index) => {
+          const thumb = document.createElement("button");
+          thumb.type = "button";
+          thumb.className = "gallery-thumb";
+          thumb.setAttribute("aria-label", `Show product image ${index + 1}`);
+          thumb.setAttribute("aria-current", String(index === 0));
+          const imageElement = document.createElement("img");
+          imageElement.src = image;
+          imageElement.alt = "";
+          thumb.append(imageElement);
+          thumb.addEventListener("click", () => {
+            mainImage.src = image;
+            mainImage.alt = `${product.name} catalogue product image ${index + 1}`;
+            gallery
+              .querySelectorAll(".gallery-thumb")
+              .forEach((item) =>
+                item.setAttribute("aria-current", String(item === thumb)),
+              );
+          });
+          gallery.append(thumb);
+        });
+        if (!imageList.length) {
+          const note = document.createElement("span");
+          note.className = "empty-state";
+          note.textContent = "No catalogue image published";
+          gallery.append(note);
+        }
+
+        const rows = document.getElementById("specRows");
+        rows.replaceChildren();
+        (productSpecs[product.name] || defaultSpecs).forEach(
+          ([label, value]) => {
+            const row = document.createElement("tr");
+            const heading = document.createElement("th");
+            heading.scope = "row";
+            heading.textContent = label;
+            const detail = document.createElement("td");
+            detail.textContent = value;
+            if (value.startsWith("Request ") || value.startsWith("Confirm ")) {
+              detail.className = "spec-unlisted";
+            }
+            row.append(heading, detail);
+            rows.append(row);
+          },
+        );
+      }
+
+      function showHeroSlide(index) {
+        const slides = [...document.querySelectorAll(".hero-slide")];
+        const dots = [...document.querySelectorAll(".hero-dot")];
+        if (!slides.length) return;
+        const activeIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => {
+          const isActive = slideIndex === activeIndex;
+          slide.classList.toggle("is-active", isActive);
+          slide.setAttribute("aria-hidden", String(!isActive));
+        });
+        dots.forEach((dot, dotIndex) =>
+          dot.setAttribute("aria-current", String(dotIndex === activeIndex)),
+        );
+        document.getElementById("heroCarousel").dataset.activeSlide =
+          activeIndex;
+      }
+
+      function renderProducts() {
+        const query = (searchInput?.value || "").trim().toLowerCase();
+        const filtered = products.filter((product) => {
+          const matchesFilter =
+            activeFilter === "all" || product.category === activeFilter;
+          const matchesQuery =
+            !query ||
+            `${product.name} ${product.category}`.toLowerCase().includes(query);
+          return matchesFilter && matchesQuery;
+        });
+        document.getElementById("resultsCount").textContent =
+          `${filtered.length} ${filtered.length === 1 ? "catalogue listing" : "catalogue listings"}`;
+        const list = document.getElementById("productList");
+        list.replaceChildren();
+        if (!filtered.length) {
+          const empty = document.createElement("p");
+          empty.className = "empty-state";
+          empty.textContent = "No matching products. Try a different search.";
+          list.append(empty);
+          return;
+        }
+        filtered.forEach((product) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "product-card";
+          button.dataset.productName = product.name;
+          const visual = document.createElement("span");
+          visual.className = "product-visual";
+          if (product.images.length) {
+            const image = document.createElement("img");
+            image.src = product.images[0];
+            image.alt = "";
+            visual.append(image);
+          } else {
+            visual.textContent = "S";
+          }
+          const copy = document.createElement("span");
+          const name = document.createElement("span");
+          name.className = "product-name";
+          name.textContent = product.name;
+          const category = document.createElement("span");
+          category.className = "product-category";
+          category.textContent = product.category;
+          copy.append(name, category);
+          const arrow = document.createElement("span");
+          arrow.className = "chevron";
+          arrow.setAttribute("aria-hidden", "true");
+          arrow.textContent = "›";
+          button.append(visual, copy, arrow);
+          button.addEventListener("click", () => {
+            renderProductDetails(product);
+            goTo("detail");
+          });
+          list.append(button);
+        });
+      }
+
+      function goTo(screenName) {
+        const target = document.getElementById(screenName);
+        if (!target) return;
+        document.querySelectorAll("[data-screen]").forEach((screen) => {
+          screen.hidden = screen !== target;
+        });
+        document.querySelectorAll(".bottom-nav [data-go]").forEach((button) => {
+          const isCurrent =
+            button.dataset.go === screenName ||
+            (screenName === "detail" && button.dataset.go === "products") ||
+            (screenName === "quote" && button.dataset.go === "contact") ||
+            (screenName === "careers-apply" && button.dataset.go === "careers");
+          if (isCurrent) button.setAttribute("aria-current", "page");
+          else button.removeAttribute("aria-current");
+        });
+        document
+          .querySelectorAll(".desktop-nav [data-go]")
+          .forEach((button) => {
+            const isCurrent =
+              button.dataset.go === screenName ||
+              (screenName === "careers-apply" &&
+                button.dataset.go === "careers");
+            if (isCurrent) button.setAttribute("aria-current", "page");
+            else button.removeAttribute("aria-current");
+          });
+        document
+          .querySelectorAll(".screen-list [data-go]")
+          .forEach((button) => {
+            if (button.dataset.go === screenName)
+              button.setAttribute("aria-current", "page");
+            else button.removeAttribute("aria-current");
+          });
+        screenWrap.scrollTop = 0;
+        if (screenName === "quote") {
+          document.getElementById("quoteForm").hidden = false;
+          document.getElementById("successMessage").hidden = true;
+        }
+        if (screenName === "careers") showCareerListings();
+        history.replaceState(null, "", `#${screenName}`);
+      }
+
+      document.addEventListener("click", (event) => {
+        const nav = event.target.closest("[data-go]");
+        if (nav) {
+          if (nav.dataset.category) {
+            activeFilter = nav.dataset.category;
+            document
+              .querySelectorAll(".filter-chip")
+              .forEach((chip) =>
+                chip.setAttribute(
+                  "aria-pressed",
+                  String(chip.dataset.filter === activeFilter),
+                ),
+              );
+            renderProducts();
+          }
+          goTo(nav.dataset.go);
+        }
+      });
+      document.querySelectorAll(".filter-chip").forEach((chip) =>
+        chip.addEventListener("click", () => {
+          activeFilter = chip.dataset.filter;
+          document
+            .querySelectorAll(".filter-chip")
+            .forEach((item) =>
+              item.setAttribute("aria-pressed", String(item === chip)),
+            );
+          renderProducts();
+        }),
+      );
+      searchInput.addEventListener("input", renderProducts);
+      document
+        .querySelectorAll(".hero-dot")
+        .forEach((dot, index) =>
+          dot.addEventListener("click", () => showHeroSlide(index)),
+        );
+      let heroTimer = window.setInterval(() => {
+        if (
+          document.visibilityState !== "visible" ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+          document.activeElement.closest?.("#heroCarousel")
+        ) {
+          return;
+        }
+        const current = Number(
+          document.getElementById("heroCarousel").dataset.activeSlide || 0,
+        );
+        showHeroSlide(current + 1);
+      }, 3000);
+      document
+        .getElementById("heroCarousel")
+        .addEventListener("focusin", () => {
+          window.clearInterval(heroTimer);
+          heroTimer = null;
+        });
+      document
+        .getElementById("heroCarousel")
+        .addEventListener("focusout", () => {
+          if (!heroTimer) {
+            heroTimer = window.setInterval(() => {
+              if (document.visibilityState === "visible") {
+                const current = Number(
+                  document.getElementById("heroCarousel").dataset.activeSlide ||
+                    0,
+                );
+                showHeroSlide(current + 1);
+              }
+            }, 3000);
+          }
+        });
+      document
+        .querySelector("[data-product-quote]")
+        .addEventListener("click", () => {
+          goTo("quote");
+          const interest = document.getElementById("interest");
+          if (
+            [...interest.options].some(
+              (option) => option.value === activeProduct.category,
+            )
+          ) {
+            interest.value = activeProduct.category;
+          }
+          document.getElementById("requirement").value =
+            `Product: ${activeProduct.name}\nRequired quantity / pack: \nDelivery destination: `;
+        });
+      document
+        .getElementById("quoteForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (!event.currentTarget.reportValidity()) return;
+          event.currentTarget.hidden = true;
+          document.getElementById("successMessage").hidden = false;
+          screenWrap.scrollTop = 0;
+        });
+      document.querySelectorAll("[data-apply-role]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const role = button.dataset.applyRole;
+          document.getElementById("careerRole").value = role;
+          document.getElementById("applicationRoleLabel").textContent =
+            `Applying for: ${role}`;
+          document.querySelector("#careers .screen-title").hidden = true;
+          document.querySelector("#careers .career-notice").hidden = true;
+          document.querySelector("#careers .career-list").hidden = true;
+          document.querySelector("#careers .footer-note").hidden = true;
+          document.getElementById("applicationRoleLabel").hidden = false;
+          document.getElementById("careerBack").hidden = false;
+          document.getElementById("careerForm").hidden = false;
+          document.getElementById("careerSuccess").hidden = true;
+          screenWrap.scrollTop = 0;
+          document.getElementById("careerName").focus({ preventScroll: true });
+        });
+      });
+      function showCareerListings() {
+        const careerScreen = document.getElementById("careers");
+        if (!careerScreen) return;
+        careerScreen.querySelector(".screen-title").hidden = false;
+        careerScreen.querySelector(".career-notice").hidden = false;
+        careerScreen.querySelector(".career-list").hidden = false;
+        careerScreen.querySelector(".footer-note").hidden = false;
+        document.getElementById("applicationRoleLabel").hidden = true;
+        document.getElementById("careerBack").hidden = true;
+        document.getElementById("careerForm").hidden = true;
+        document.getElementById("careerSuccess").hidden = true;
+      }
+      document
+        .getElementById("careerBack")
+        .addEventListener("click", showCareerListings);
+      document
+        .getElementById("careerCv")
+        .addEventListener("change", (event) => {
+          const file = event.currentTarget.files[0];
+          if (!file) return;
+          const allowedTypes = [
+            "application/pdf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          ];
+          const allowedExtension = /\.(pdf|doc|docx)$/i.test(file.name);
+          if (
+            (!allowedTypes.includes(file.type) && !allowedExtension) ||
+            file.size > 5 * 1024 * 1024
+          ) {
+            event.currentTarget.setCustomValidity(
+              "Choose a PDF or Word CV up to 5 MB.",
+            );
+          } else {
+            event.currentTarget.setCustomValidity("");
+          }
+          event.currentTarget.reportValidity();
+        });
+      document
+        .getElementById("careerForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          const form = event.currentTarget;
+          const file = document.getElementById("careerCv").files[0];
+          if (!form.reportValidity() || !file) return;
+          if (file.size > 5 * 1024 * 1024) {
+            document
+              .getElementById("careerCv")
+              .setCustomValidity("Choose a CV up to 5 MB.");
+            document.getElementById("careerCv").reportValidity();
+            return;
+          }
+          form.hidden = true;
+          document.getElementById("applicationRoleLabel").hidden = true;
+          document.getElementById("careerBack").hidden = true;
+          document.getElementById("careerSuccess").hidden = false;
+          screenWrap.scrollTop = 0;
+        });
+      if (
+        window.matchMedia(
+          "(min-width: 1000px) and (prefers-reduced-motion: no-preference)",
+        ).matches &&
+        "IntersectionObserver" in window
+      ) {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        document.querySelectorAll("#home .reveal-item").forEach((item) => {
+          revealObserver.observe(item);
+        });
+        document.documentElement.classList.add("motion-ready");
+      }
+      renderProducts();
+      renderProductDetails(activeProduct);
+      const initialScreen = location.hash.slice(1);
+      if (document.getElementById(initialScreen)) goTo(initialScreen);
+    </script>
+  </body>
+</html>
