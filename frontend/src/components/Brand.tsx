@@ -1,6 +1,3 @@
-const localProductImage = (name: string, extension: string) =>
-  `/img/brand/${name}.${extension}`;
-
 export function Brand() {
   return (
     <span className="brand-lockup">
