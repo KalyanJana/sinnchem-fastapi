@@ -299,6 +299,58 @@
   color: #45574f;
 }
 
+.location-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: stretch;
+  gap: 28px;
+}
+
+.location-copy {
+  align-self: center;
+}
+
+.location-map {
+  display: block;
+  width: 100%;
+  min-height: 270px;
+  border: 0;
+  border-radius: 4px;
+}
+
+.company-snapshot-light {
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  padding: 0 30px;
+  background: transparent;
+  color: var(--ink);
+}
+
+.company-snapshot-light .fact-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.company-snapshot-light .fact-grid > div {
+  border-color: var(--line);
+}
+
+.company-snapshot-light .fact-grid strong {
+  color: var(--green);
+}
+
+.company-snapshot-light .fact-grid span {
+  color: var(--muted);
+}
+
+.leader-card .eyebrow {
+  color: var(--lime);
+}
+
+.leader-card > div > p:not(.eyebrow) {
+  color: #d5e2db;
+}
+
 @media (max-width: 999px) {
   .site-header {
     padding-right: 14px;
@@ -502,6 +554,21 @@
 
   .detail-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .location-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .location-map {
+    min-height: 240px;
+  }
+
+  .company-snapshot-light {
+    max-width: none;
+    margin: 0 20px 18px;
+    padding: 0 22px;
   }
 
   .detail-image {
