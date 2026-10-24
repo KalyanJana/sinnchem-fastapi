@@ -25,6 +25,12 @@ export interface Product {
   name: string;
   category: string;
   image: string;
+  images: string[];
   cas?: string;
   description: string;
+  specification: Record<string, string>;
+  additionalInformation?: Record<string, string>;
+  minimumQuantity?: number;
+  unit?: string;
+  price?: number;
 }

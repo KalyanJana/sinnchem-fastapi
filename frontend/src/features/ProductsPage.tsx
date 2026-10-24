@@ -5,30 +5,6 @@ import type { Product } from "../types";
 interface Props {
   onQuote: (product?: Product) => void;
 }
-const specs: Record<string, Array<[string, string]>> = {
-  "Methyl 2-Amino-4,6-dihydroxy Nicotinate": [
-    ["CAS No.", "523992-26-9"],
-    ["Chemical formula", "C7H8N2O4"],
-    ["Purity", ">98% (HPLC)"],
-    ["Grade", "Reagent Grade"],
-    ["Physical form", "Solid"],
-    ["Packaging", "1 kg can"],
-  ],
-  "Dimethyl 2-Methoxymalonate": [
-    ["CAS No.", "5018-30-4"],
-    ["Purity", ">96%"],
-    ["Grade", "Reagent Grade; Industrial Grade standard"],
-    ["Physical form", "Liquid"],
-    ["Minimum order quantity", "5 kg"],
-  ],
-  "N-Acetyl Thiazolidine-4-Carboxylic Acid (NATCA)": [
-    ["CAS No.", "5025-82-1"],
-    ["Purity", ">99% (HPLC)"],
-    ["Grade", "Reagent Grade; Industrial Grade standard"],
-    ["Physical form", "Powder"],
-    ["Minimum order quantity", "1 kg"],
-  ],
-};
 
 export function ProductsPage({ onQuote }: Props) {
   const [query, setQuery] = useState("");
@@ -46,15 +22,17 @@ export function ProductsPage({ onQuote }: Props) {
     [filter, query],
   );
   if (selected) {
-    const rows = specs[selected.name] ?? [
-      ["CAS No.", "Request specification"],
-      ["Chemical formula", "Request specification"],
-      ["Molecular weight", "Request specification"],
-      ["Purity", "Request specification"],
-      ["Grade", "Request specification"],
-      ["Physical form", "Request specification"],
-      ["Packaging / MOQ", "Request current options"],
-    ];
+    const specificationRows = Object.entries(selected.specification);
+    if (
+      selected.minimumQuantity !== undefined &&
+      !specificationRows.some(([label]) => /minimum/i.test(label))
+    ) {
+      specificationRows.push([
+        "Minimum quantity",
+        `${selected.minimumQuantity} ${selected.unit ?? ""}`.trim(),
+      ]);
+    }
+
     return (
       <main className="product-detail">
         <button className="back-link" onClick={() => setSelected(null)}>
@@ -62,10 +40,13 @@ export function ProductsPage({ onQuote }: Props) {
         </button>
         <div className="detail-grid">
           <div className="detail-image">
-            <img
-              src={selected.image}
-              alt={`${selected.name} catalogue product`}
-            />
+            {selected.images.map((image, index) => (
+              <img
+                key={image}
+                src={image}
+                alt={`${selected.name} catalogue image ${index + 1}`}
+              />
+            ))}
           </div>
           <div>
             <p className="eyebrow">{selected.category}</p>
@@ -74,7 +55,7 @@ export function ProductsPage({ onQuote }: Props) {
             <h2>Product specifications</h2>
             <table className="spec-table">
               <tbody>
-                {rows.map(([label, value]) => (
+                {specificationRows.map(([label, value]) => (
                   <tr key={label}>
                     <th>{label}</th>
                     <td>{value}</td>
@@ -82,6 +63,23 @@ export function ProductsPage({ onQuote }: Props) {
                 ))}
               </tbody>
             </table>
+            {selected.additionalInformation && (
+              <>
+                <h2>Additional information</h2>
+                <table className="spec-table">
+                  <tbody>
+                    {Object.entries(selected.additionalInformation).map(
+                      ([label, value]) => (
+                        <tr key={label}>
+                          <th>{label}</th>
+                          <td>{value}</td>
+                        </tr>
+                      ),
+                    )}
+                  </tbody>
+                </table>
+              </>
+            )}
             <p className="supply-note">
               Confirm the current specification, documentation, pricing, and
               supply timeline directly with Sinnchem before ordering.
